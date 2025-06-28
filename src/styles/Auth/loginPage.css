@@ -1,0 +1,48 @@
+@import '../variables.css';
+
+
+.login-root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-card {
+    background-color: var(--primary-background-color);
+    width: 20rem;
+    display: flex;
+    align-items: center;
+    border-radius: 1rem;
+    flex-direction: column;
+}
+
+.login-input {
+    width: 80%;
+    margin: 1rem;
+    margin-top: 0;
+    outline: none;
+    border: none;
+    height: 2rem;
+    border-radius: 10px;
+}
+
+.login-input:focus {
+    border-style: solid;
+    border-color: var(--page-background-color);
+    border-width: 2px;
+}
+
+.login-submit {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border: none
+}
+
+.login-submit:hover {
+    border-radius: 2px;
+    background-color: var(--page-background-color);
+    color: white;
+    cursor: pointer;
+}
