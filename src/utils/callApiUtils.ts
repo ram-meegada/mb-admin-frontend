@@ -1,27 +1,24 @@
-import { useNavigate } from "react-router-dom";
-
-
 type Props = {
   method: string;
   Accept: string;
   endPoint: string;
+  onFailure: (message: string) => void;
+  navigate: (path: string) => void;
   contentType?: string;
   formData?: any;
-  showToast?: boolean;
 };
 
 const APICall = async ({
   method,
   Accept,
   endPoint,
+  onFailure,
+  navigate,
   contentType,
   formData,
-  showToast,
 }: Props) => {
   try {
-    const navigate = useNavigate();
-    const BEARER_TOKEN = "";
-
+    const BEARER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxNzM3NjkyLCJpYXQiOjE3NTE2NTEyOTIsImp0aSI6IjRlY2EyNGMzNzNiYjQ0OTBiNjVhODgxYTdkMzJjY2VkIiwidXNlcl9pZCI6M30.xepCVsgKd51GsXrRH6i0Gn99RKNdgQfGfjERNJhM05I";
     let json_response = null;
     const options: any = {
       method: method,
@@ -38,24 +35,24 @@ const APICall = async ({
     if (contentType) {
       options.headers["Content-Type"] = contentType;
     }
-
+    
     const response = await fetch(endPoint, options);
     json_response = await response.json();
 
     if (response.status === 401) {
-      navigate("Login");
+      navigate("/");
     } else if (response.status === 400) {
-
+      onFailure(json_response?.message || "Something went wrong")
     } else if ([200, 201].includes(response.status)) {
-      if (showToast) {
-      }
+      return json_response.data
     } else if (response.status === 500) {
-
+      onFailure(json_response?.message || "Internal server error")
     } else {
+      onFailure(json_response?.message || "Error not handled")
     }
-    return json_response.data;
+
   } catch (err) {
-    return null;
+    onFailure(String(err))
   }
 };
 

@@ -1,0 +1,12 @@
+@import '../src/styles/variables.css';
+
+
+.main-page-wrapper-global {
+    background-color: var(--primary-background-color);
+    height: 100%;
+    margin-left: var(--main-card-margin-left);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}

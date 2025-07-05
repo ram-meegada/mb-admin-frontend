@@ -10,6 +10,9 @@ import {
   SIDEBAR_ADD_STOCK,
   SIDEBAR_STOCKS_LIST,
   SUB_MENU_NAVIGATION_MAPPING,
+  SIDEBAR_PAYMENTS,
+  SIDEBAR_MONTH_PAYMENTS,
+  SIDEBAR_CUSTOMER_LIST
 } from "../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 
@@ -118,7 +121,13 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
         </button>
         {dropDownSelected == SIDEBAR_CUSTOMERS && (
           <ul className="sidebar-dropdown-submenu">
-            
+            <li
+              className="sidebar-dropdown-item"
+              onClick={() => handleSubMenuSelect(SIDEBAR_CUSTOMER_LIST)}
+              style={getSubMenuSelectedStyle(SIDEBAR_CUSTOMER_LIST)}
+            >
+              Customers List
+            </li>
           </ul>
         )}
       </div>
@@ -162,17 +171,23 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
       <div className="sidebar-dropdown-div">
         <button
           className="dropdown-btn"
-          style={getOptionSelectedStyle("payments")}
-          onClick={() => handleDropDownSelect("payments")}
+          style={getOptionSelectedStyle(SIDEBAR_PAYMENTS)}
+          onClick={() => handleDropDownSelect(SIDEBAR_PAYMENTS)}
         >
           Payments{" "}
           <i className="sidebar-dropdown-symbol">
-            {dropDownSelected == "payments" ? "▲" : "▼"}
+            {dropDownSelected == SIDEBAR_PAYMENTS ? "▲" : "▼"}
           </i>
         </button>
-        {dropDownSelected == "payments" && (
+        {dropDownSelected == SIDEBAR_PAYMENTS && (
           <ul className="sidebar-dropdown-submenu">
-            
+            <li
+              className="sidebar-dropdown-item"
+              onClick={() => handleSubMenuSelect(SIDEBAR_MONTH_PAYMENTS)}
+              style={getSubMenuSelectedStyle(SIDEBAR_MONTH_PAYMENTS)}
+            >
+              Month Payments
+            </li>
           </ul>
         )}
       </div>

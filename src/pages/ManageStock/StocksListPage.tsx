@@ -1,250 +1,76 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SidebarLayout from "../../components/SideBarLayout";
 import {
   SIDEBAR_STOCKS_LIST,
   SIDEBAR_MANAGE_STOCK,
+  pageHeadingStyle,
 } from "../../utils/commonUtils";
 import "../../styles/ManageStock/StocksListPageStyle.css";
-import { BASE_URL } from "../../utils/endpoints";
+import { BASE_URL, LIST_STOCKS_ENDPOINT } from "../../utils/endpoints";
+import APICall from "../../utils/callApiUtils";
+import { useNavigate } from "react-router-dom";
+import ToastComponent from "../../components/ToastComponent";
+import { toast } from 'react-toastify';
+import LoaderModal from "../../components/Loader";
+
+
+type dataProps = {
+  id: number,
+  live_stock_id: string,
+  image_url: string,
+  breed: string,
+  age: string,
+  milk_capacity: number,
+  parity: number,
+  is_pregnant: boolean,
+  last_calvation_date: string,
+  lactation_month: number,
+  purchase_price: number
+}
 
 const StocksListPage = () => {
   const [showCollapsed, setShowCollapsed] = useState(false);
+  const [apiresponse, SetApiResponse] = useState<dataProps[]>([])
+  const [ loading, setLoading ] = useState(false)
 
-  const data = [
-        {
-            "id": 29,
-            "live_stock_id": "B-29",
-            "image_url": "/media/images/buffalo_JIyy1hd.png",
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 21 d",
-            "milk_capacity": 5.0,
-            "parity": 4,
-            "is_pregnant": true,
-            "last_calvation_date": "2025-03-29",
-            "lactation_month": 5,
-            "purchase_price": 1.0
-        },
-        {
-            "id": 24,
-            "live_stock_id": "B-24",
-            "image_url": "/media/images/buffalo_kOashzV.png",
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 1 d",
-            "milk_capacity": 8.0,
-            "parity": 8,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-16",
-            "lactation_month": 5,
-            "purchase_price": 50000.0
-        },
-        {
-            "id": 23,
-            "live_stock_id": "B-23",
-            "image_url": "/media/images/buffalo_SRaLBHr.png",
-            "breed": "Bhadawari",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 2.0,
-            "parity": 5,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-23",
-            "lactation_month": 5,
-            "purchase_price": 5.0
-        },
-        {
-            "id": 21,
-            "live_stock_id": "B-21",
-            "image_url": "/media/images/buffalo_1oQKUt7.png",
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 5.0,
-            "parity": 5,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-23",
-            "lactation_month": 5,
-            "purchase_price": 50000.0
-        },
-        {
-            "id": 19,
-            "live_stock_id": "B-19",
-            "image_url": "/media/images/buffalo_0HJTY09.png",
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 5.0,
-            "parity": 6,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-23",
-            "lactation_month": 5,
-            "purchase_price": 50000.0
-        },
-        {
-            "id": 18,
-            "live_stock_id": "B-18",
-            "image_url": "/media/images/buffalo.png",
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 15.0,
-            "parity": 5,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-23",
-            "lactation_month": 5,
-            "purchase_price": 5000.0
-        },
-        {
-            "id": 17,
-            "live_stock_id": "B-17",
-            "image_url": "/media/media/images/testing.png",
-            "breed": "Bhadawari",
-            "age": null,
-            "milk_capacity": 2.0,
-            "parity": 0,
-            "is_pregnant": false,
-            "last_calvation_date": null,
-            "lactation_month": 0,
-            "purchase_price": 0.0
-        },
-        {
-            "id": 16,
-            "live_stock_id": "B-16",
-            "image_url": null,
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 4.0,
-            "parity": 5,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-14",
-            "lactation_month": 5,
-            "purchase_price": 50000.0
-        },
-        {
-            "id": 15,
-            "live_stock_id": "B-15",
-            "image_url": null,
-            "breed": "Murrah",
-            "age": "1 y, 6 m, 0 d",
-            "milk_capacity": 10.0,
-            "parity": 2,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-01-31",
-            "lactation_month": 3,
-            "purchase_price": 50000.0
-        },
-        {
-            "id": 24,
-            "live_stock_id": "B-24",
-            "image_url": "/media/images/buffalo_kOashzV.png",
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 1 d",
-            "milk_capacity": 8.0,
-            "parity": 8,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-16",
-            "lactation_month": 5,
-            "purchase_price": 50000.0
-        },
-        {
-            "id": 23,
-            "live_stock_id": "B-23",
-            "image_url": "/media/images/buffalo_SRaLBHr.png",
-            "breed": "Bhadawari",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 2.0,
-            "parity": 5,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-23",
-            "lactation_month": 5,
-            "purchase_price": 5.0
-        },
-        {
-            "id": 21,
-            "live_stock_id": "B-21",
-            "image_url": "/media/images/buffalo_1oQKUt7.png",
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 5.0,
-            "parity": 5,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-23",
-            "lactation_month": 5,
-            "purchase_price": 50000.0
-        },
-        {
-            "id": 19,
-            "live_stock_id": "B-19",
-            "image_url": "/media/images/buffalo_0HJTY09.png",
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 5.0,
-            "parity": 6,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-23",
-            "lactation_month": 5,
-            "purchase_price": 50000.0
-        },
-        {
-            "id": 18,
-            "live_stock_id": "B-18",
-            "image_url": "/media/images/buffalo.png",
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 15.0,
-            "parity": 5,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-23",
-            "lactation_month": 5,
-            "purchase_price": 5000.0
-        },
-        {
-            "id": 17,
-            "live_stock_id": "B-17",
-            "image_url": "/media/media/images/testing.png",
-            "breed": "Bhadawari",
-            "age": null,
-            "milk_capacity": 2.0,
-            "parity": 0,
-            "is_pregnant": false,
-            "last_calvation_date": null,
-            "lactation_month": 0,
-            "purchase_price": 0.0
-        },
-        {
-            "id": 16,
-            "live_stock_id": "B-16",
-            "image_url": null,
-            "breed": "Jaffarabadi",
-            "age": "0 y, 3 m, 8 d",
-            "milk_capacity": 4.0,
-            "parity": 5,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-03-14",
-            "lactation_month": 5,
-            "purchase_price": 50000.0
-        },
-        {
-            "id": 15,
-            "live_stock_id": "B-15",
-            "image_url": null,
-            "breed": "Murrah",
-            "age": "1 y, 6 m, 0 d",
-            "milk_capacity": 10.0,
-            "parity": 2,
-            "is_pregnant": false,
-            "last_calvation_date": "2025-01-31",
-            "lactation_month": 3,
-            "purchase_price": 50000.0
-        },
-    ];
+  const navigate = useNavigate();
+
+  function onFailureCallBack(message: string) {
+    toast.error(message)
+  }
+
+  useEffect(() => {
+    async function getApiResponse() {
+      setLoading(true)
+      const response = await APICall({
+        method: "GET",
+        Accept: "application/json",
+        endPoint: LIST_STOCKS_ENDPOINT,
+        onFailure: onFailureCallBack,
+        contentType: "application/json",
+        navigate: navigate
+      })
+      setLoading(false)
+      if (response) {
+        SetApiResponse(response)
+      }
+    }
+    getApiResponse()
+  }, [])
+
   return (
     <>
+    {loading && <LoaderModal />}
       <SidebarLayout
         mainOptionSelected={SIDEBAR_MANAGE_STOCK}
         optionSelected={SIDEBAR_STOCKS_LIST}
       />
-      <div className="st_lst_main">
-        <h1 style={{ margin: 0, alignSelf: "center", color: "white" }}>
+      <div className="main-page-wrapper-global">
+        <h1 style={pageHeadingStyle}>
           Stocks List
         </h1>
         <div className="st_lst_animals_list">
-          {data.map((value, index) => (
+          {apiresponse.map((value, index) => (
             <div className="st_lst_animal_card" key={index}>
               <img
                 className="st_lst_animal_card_img"
@@ -313,6 +139,7 @@ const StocksListPage = () => {
           ))}
         </div>
       </div>
+      <ToastComponent />
     </>
   );
 };

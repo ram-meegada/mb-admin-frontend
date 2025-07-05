@@ -1,0 +1,25 @@
+@import './variables.css';
+
+
+.main-table { 
+    margin: 30px;
+}
+
+th {
+    color: white;
+    border-collapse: collapse;
+    height: 2rem;
+    font-size: 1.5rem;
+    background-color: var(--page-background-color);
+    padding: 0.5rem 0.2rem
+}
+
+td {
+    height: 1.8rem;
+    color: black;
+    font-size: 1.2rem;
+    text-align: center;
+    vertical-align: middle;
+    background-color: var(--hover-red-color);
+    max-width: 1rem;
+}

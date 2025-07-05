@@ -1,14 +1,19 @@
+import { ALL_CUSTOMERS_ENDPOINT_FE, HOME_ENDPOINT_FE, MONTH_PAYMENTS_ENDPOINT_FE, STOCKS_LIST_ENDPOINT_FE } from "./endpoints"
+
 // Main buttons
 export const SIDEBAR_MANAGE_STOCK = "manage_stock"
 export const SIDEBAR_CUSTOMERS = "customers"
 export const SIDEBAR_EXPENDITURE = "expenditure"
 export const SIDEBAR_ANALYTICS = "analytics"
+export const SIDEBAR_PAYMENTS = "payments"
+
 
 // Sub Menu Options
 export const SIDEBAR_DASHBOARD = "dashboard"
 export const SIDEBAR_ADD_STOCK = "add_stock"
 export const SIDEBAR_STOCKS_LIST = "stocks_list"
-
+export const SIDEBAR_MONTH_PAYMENTS = "month_payments"
+export const SIDEBAR_CUSTOMER_LIST = "customers_list"
 
 // 
 type SUB_MENU_NAVIGATION_MAPPING_PROPS = {
@@ -16,6 +21,12 @@ type SUB_MENU_NAVIGATION_MAPPING_PROPS = {
 }
 
 export const SUB_MENU_NAVIGATION_MAPPING: SUB_MENU_NAVIGATION_MAPPING_PROPS = {
-    [SIDEBAR_STOCKS_LIST]: '/stocks-list',
-    [SIDEBAR_DASHBOARD]: '/home'
+    [SIDEBAR_STOCKS_LIST]: STOCKS_LIST_ENDPOINT_FE,
+    [SIDEBAR_DASHBOARD]: HOME_ENDPOINT_FE,
+    [SIDEBAR_MONTH_PAYMENTS]: MONTH_PAYMENTS_ENDPOINT_FE,
+    [SIDEBAR_CUSTOMER_LIST]: ALL_CUSTOMERS_ENDPOINT_FE,
 }
+
+
+// Global CSS
+export const pageHeadingStyle = { margin: 0, alignSelf: "center", color: "white" }

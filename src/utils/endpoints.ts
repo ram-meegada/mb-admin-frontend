@@ -1,5 +1,5 @@
-// export const BASE_URL = "http://127.0.0.1:8001/"
-export const BASE_URL = "http://192.168.1.23:8001/"
+export const BASE_URL = "http://127.0.0.1:8001/"
+// export const BASE_URL = "http://192.168.1.23:8001/"
 
 // Auth
 const AUTH = "user/auth/"
@@ -26,10 +26,21 @@ export const FETCH_EXPENDITURE_GRAPH_DATA = BASE_URL + EXPENDITURE_COMMON_ENDPOI
 // Endpoints for Customer
 const CUSTOMERS_ENDPOINTS = "customers/"
 
-export const CUSTOMERS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'all/'
+export const CUSTOMERS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'web/all/'
 export const ACTIVE_SUBSCRIPTION_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'subscriptions/all/'
 export const ACTIVE_DELIVERY_AGENTS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'delivery-agents/all/'
 export const ADD_CUSTOMER = BASE_URL + CUSTOMERS_ENDPOINTS + 'add/'
 
 // Payments
 export const PAYMENTS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'payments/'
+
+
+
+
+// ######################################### Front End Endpoints ########################################## //
+
+export const LOGIN_ENDPOINT_FE = '/'
+export const HOME_ENDPOINT_FE = '/home'
+export const STOCKS_LIST_ENDPOINT_FE = '/stocks-list'
+export const MONTH_PAYMENTS_ENDPOINT_FE = '/monthly-payments'
+export const ALL_CUSTOMERS_ENDPOINT_FE = '/all-customers'

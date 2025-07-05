@@ -1,16 +1,6 @@
 @import url('../variables.css');
 
 
-.st_lst_main {
-    background-color: var(--primary-background-color);
-    height: 100%;
-    margin-left: var(--main-card-margin-left);
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    overflow: auto;
-}
-
 .st_lst_animals_list {
     display: flex;
     flex-direction: row;
