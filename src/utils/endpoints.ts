@@ -30,6 +30,7 @@ export const CUSTOMERS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'web/all/'
 export const ACTIVE_SUBSCRIPTION_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'subscriptions/all/'
 export const ACTIVE_DELIVERY_AGENTS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'delivery-agents/all/'
 export const ADD_CUSTOMER = BASE_URL + CUSTOMERS_ENDPOINTS + 'add/'
+export const GET_CUSTOMER = BASE_URL + CUSTOMERS_ENDPOINTS
 
 // Payments
 export const PAYMENTS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'payments/'
@@ -44,3 +45,4 @@ export const HOME_ENDPOINT_FE = '/home'
 export const STOCKS_LIST_ENDPOINT_FE = '/stocks-list'
 export const MONTH_PAYMENTS_ENDPOINT_FE = '/monthly-payments'
 export const ALL_CUSTOMERS_ENDPOINT_FE = '/all-customers'
+export const CUSTOMER_BY_ID_ENDPOINT_FE = '/customer/:id'

@@ -29,6 +29,8 @@ const CustomersList = () => {
     {'name': 'Start Date', 'type': 'string'},
     {'name': 'Delivery Agent', 'type': 'actionLink'},
     {'name': 'Schedule', 'type': 'string'},
+    {'name': 'Total Turnover', 'type': 'number'},
+    {'name': 'Pending payments count', 'type': 'number'},
   ]
 
 	function onFailureCallBack(message: string) {
@@ -53,6 +55,7 @@ const CustomersList = () => {
     }
     getApiResponse()
 	}, [])
+
   return (
 	<>
 		{loading && <LoaderModal />}
@@ -61,7 +64,7 @@ const CustomersList = () => {
         optionSelected={SIDEBAR_CUSTOMER_LIST}
       />
 	  <div className="main-page-wrapper-global">
-			<h1 style={pageHeadingStyle}>CustomersList</h1>
+			<h1 style={pageHeadingStyle}>Customers List</h1>
 			<TableRendererComponent tableHeaders={tableHeaders} apiData={apiResponse} />
 	  </div>
 		<ToastComponent />

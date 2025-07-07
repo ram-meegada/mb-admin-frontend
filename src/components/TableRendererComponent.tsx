@@ -1,4 +1,5 @@
 import "../styles/tableRendererStyle.css";
+import { CUSTOMER_BY_ID_ENDPOINT_FE } from "../utils/endpoints";
 
 type tableHeadersProps = {
   name: string;
@@ -6,25 +7,30 @@ type tableHeadersProps = {
 };
 
 type Props = {
-    tableHeaders: tableHeadersProps[];
-    apiData: any[]
-}
+  tableHeaders: tableHeadersProps[];
+  apiData: any[];
+};
 
-const TableRendererComponent = ({tableHeaders, apiData}: Props) => {
+const TableRendererComponent = ({ tableHeaders, apiData }: Props) => {
 
   function getRowData(index: number, value: any) {
     if (tableHeaders[index]["type"] == "actionLink") {
+      const endpoint = CUSTOMER_BY_ID_ENDPOINT_FE.replace(":id", value.id);
       return (
         <td key={index}>
-          <a href="#">{value.name}</a>
+          <a href={`${endpoint}`}>{value.name}</a>
         </td>
       );
     } else if (["number", "string"].includes(tableHeaders[index]["type"])) {
       return <td key={index}>{value}</td>;
     } else if (tableHeaders[index]["type"] == "boolean") {
       return <td key={index}>{value === true ? "Yes" : "No"}</td>;
+    } else if (tableHeaders[index]["type"] == "price") {
+      const formatted_value = value ? `${value}/-` : `${value}`
+      return <td key={index}>{formatted_value}</td>;
     }
   }
+
   return (
     <table className="main-table">
       <thead>
@@ -38,8 +44,7 @@ const TableRendererComponent = ({tableHeaders, apiData}: Props) => {
         {apiData.map((row, rowIndex) => (
           <tr key={rowIndex}>
             {Object.values(row).map((data, dataIndex) => {
-            //   <td key={`${rowIndex}-${dataIndex}`}>{getRowData(dataIndex, data)}</td>
-              return getRowData(dataIndex, data)
+              return getRowData(dataIndex, data);
             })}
           </tr>
         ))}
