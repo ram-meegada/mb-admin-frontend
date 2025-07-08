@@ -61,29 +61,29 @@ const CutomerDetailsById = () => {
       />
       <div className="main-page-wrapper-global">
         <h1 style={pageHeadingStyle}>Customer Details</h1>
-        <div className="container">
-          <div className="info-container">
+        <div className="customer-container">
+          <div className="customer-info-container">
             <strong>Name:-</strong> {apiResponse?.user.name}
           </div>
-          <div className="info-container">
+          <div className="customer-info-container">
             <strong>Username:-</strong> {apiResponse?.user.username}
           </div>
-          <div className="info-container">
+          <div className="customer-info-container">
             <strong>Subscription:-</strong> {apiResponse?.subscription}
           </div>
-          <div className="info-container">
+          <div className="customer-info-container">
             <strong>Start Date:-</strong> {apiResponse?.start_date}
           </div>
-          <div className="info-container">
+          <div className="customer-info-container">
             <strong>Delivery Agent:-</strong> {apiResponse?.delivery_agent.name}
           </div>
-          <div className="info-container">
+          <div className="customer-info-container">
             <strong>Schedule:-</strong> {apiResponse?.schedule}
           </div>
-          <div className="info-container">
+          <div className="customer-info-container">
             <strong>Total Turnover:-</strong> {apiResponse?.total_turnover}/-
           </div>
-          <div className="info-container">
+          <div className="customer-info-container">
             <strong>Pending payments:-</strong>
             <ul>
               {apiResponse?.pending_payments.map((value, index) => (

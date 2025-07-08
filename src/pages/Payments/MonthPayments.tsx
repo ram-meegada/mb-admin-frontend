@@ -28,6 +28,7 @@ const MonthPayments = () => {
   const [totalDue, setTotalDue] = useState("");
   const [totalPaid, setTotalPaid] = useState("");
   const [totalMonthPayment, setTotalMonthPayment] = useState("");
+  const [currentYearRevenue, setCurrentYearRevenue] = useState("");
 
   const tableHeaders = [
     { name: "Customer", type: "actionLink" },
@@ -58,6 +59,7 @@ const MonthPayments = () => {
         setTotalDue(response.total_due);
         setTotalPaid(response.total_paid);
         setTotalMonthPayment(response.total_payment);
+        setCurrentYearRevenue(response.current_year_revenue)
       }
     }
     getApiResponse();
@@ -97,6 +99,10 @@ const MonthPayments = () => {
           <p>
             <strong>Total Due:- </strong>
             {totalDue}/-
+          </p>
+          <p>
+            <strong>Current Year Revenue:- </strong>
+            {currentYearRevenue}/-
           </p>
         </div>
       </div>

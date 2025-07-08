@@ -12,7 +12,9 @@ import {
   SUB_MENU_NAVIGATION_MAPPING,
   SIDEBAR_PAYMENTS,
   SIDEBAR_MONTH_PAYMENTS,
-  SIDEBAR_CUSTOMER_LIST
+  SIDEBAR_CUSTOMER_LIST,
+  SIDEBAR_EXPENDITURE_LIST,
+  SIDEBAR_EXPENDITURE_ANALYTICS
 } from "../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 
@@ -145,7 +147,13 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
         </button>
         {dropDownSelected == SIDEBAR_EXPENDITURE && (
           <ul className="sidebar-dropdown-submenu">
-            
+            <li
+              className="sidebar-dropdown-item"
+              onClick={() => handleSubMenuSelect(SIDEBAR_EXPENDITURE_LIST)}
+              style={getSubMenuSelectedStyle(SIDEBAR_EXPENDITURE_LIST)}
+            >
+              Expenditure list
+            </li>
           </ul>
         )}
       </div>
@@ -163,7 +171,13 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
         </button>
         {dropDownSelected == SIDEBAR_ANALYTICS && (
           <ul className="sidebar-dropdown-submenu">
-            
+            <li
+              className="sidebar-dropdown-item"
+              onClick={() => handleSubMenuSelect(SIDEBAR_EXPENDITURE_ANALYTICS)}
+              style={getSubMenuSelectedStyle(SIDEBAR_EXPENDITURE_ANALYTICS)}
+            >
+              Expenditure Analytics
+            </li>
           </ul>
         )}
       </div>

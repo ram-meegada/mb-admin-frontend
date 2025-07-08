@@ -18,7 +18,7 @@ const APICall = async ({
   formData,
 }: Props) => {
   try {
-    const BEARER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUxOTU2NDIyLCJpYXQiOjE3NTE4NzAwMjIsImp0aSI6IjhlN2IwMDY5ODkwZjQwNzhiOWNlNjA5MmNjNGY0MjhiIiwidXNlcl9pZCI6M30.4FFAAXQe6vWtSovNlKfE1udMlOWUiElu8HSz9Ny1mPk";
+    const BEARER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMDQyODYyLCJpYXQiOjE3NTE5NTY0NjIsImp0aSI6Ijg3NmM0MzAwNzliYzQwNzFiODQ1MTBkZTgwNjY3ZDljIiwidXNlcl9pZCI6M30.MpnGKTZehZ4W_SQJ5PDFPek2R87paTiyAZp1UnPS_BY";
     let json_response = null;
     const options: any = {
       method: method,
@@ -47,6 +47,8 @@ const APICall = async ({
       return json_response.data
     } else if (response.status === 500) {
       onFailure(json_response?.message || "Internal server error")
+    } else if (response.status === 405) {
+      onFailure(json_response?.detail)
     } else {
       onFailure(json_response?.message || "Error not handled")
     }

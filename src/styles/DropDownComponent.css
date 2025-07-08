@@ -1,0 +1,19 @@
+@import './variables.css';
+
+
+.drop-down-container {
+    margin-right: 2rem;
+    margin-top: 2rem;
+    align-self: flex-end;
+}
+
+.drop-down-select {
+    width: 8rem;
+    height: 2.5rem;
+    outline: none;
+    font-size: large;
+}
+
+.drop-down-select:hover {
+    cursor: pointer;
+}

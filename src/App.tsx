@@ -6,6 +6,8 @@ import MonthPayments from "./pages/Payments/MonthPayments";
 import {
   ALL_CUSTOMERS_ENDPOINT_FE,
   CUSTOMER_BY_ID_ENDPOINT_FE,
+  EXPENDITURE_ANALYTICS_ENDPOINT_FE,
+  EXPENDITURE_LIST_ENDPOINT_FE,
   HOME_ENDPOINT_FE,
   LOGIN_ENDPOINT_FE,
   MONTH_PAYMENTS_ENDPOINT_FE,
@@ -14,6 +16,8 @@ import {
 import "./App.css";
 import CustomersList from "./pages/Customers/CustomersList";
 import CutomerDetailsById from "./pages/Customers/CutomerDetailsById";
+import ExpenditureList from "./pages/Expenditure/ExpenditureList";
+import ExpenditureAnalytics from "./pages/Analytics/ExpenditureAnalytics";
 
 function App() {
   return (
@@ -29,6 +33,8 @@ function App() {
           />
           <Route path={ALL_CUSTOMERS_ENDPOINT_FE} element={<CustomersList />} />
           <Route path={CUSTOMER_BY_ID_ENDPOINT_FE} element={<CutomerDetailsById />} />
+          <Route path={EXPENDITURE_LIST_ENDPOINT_FE} element={<ExpenditureList />} />
+          <Route path={EXPENDITURE_ANALYTICS_ENDPOINT_FE} element={<ExpenditureAnalytics />} />
         </Routes>
       </BrowserRouter>
     </>

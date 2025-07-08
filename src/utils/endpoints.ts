@@ -16,7 +16,7 @@ export const STOCK_BY_ID_ENDPOINT = BASE_URL + LIVE_STOCK_COMMON_ENDPOINT
 // Endpoints for Expenditure
 const EXPENDITURE_COMMON_ENDPOINT = "expenditure/"
 
-export const ADD_EXPENDITURE = BASE_URL + EXPENDITURE_COMMON_ENDPOINT + ''
+export const ADD_EXPENDITURE = BASE_URL + EXPENDITURE_COMMON_ENDPOINT + 'web/'
 export const FETCH_EXPENDITURE_CATEGORIES = BASE_URL + EXPENDITURE_COMMON_ENDPOINT + 'category/'
  
 export const FETCH_EXPENDITURE_BY_ID = BASE_URL + EXPENDITURE_COMMON_ENDPOINT + 'manage/'
@@ -46,3 +46,5 @@ export const STOCKS_LIST_ENDPOINT_FE = '/stocks-list'
 export const MONTH_PAYMENTS_ENDPOINT_FE = '/monthly-payments'
 export const ALL_CUSTOMERS_ENDPOINT_FE = '/all-customers'
 export const CUSTOMER_BY_ID_ENDPOINT_FE = '/customer/:id'
+export const EXPENDITURE_LIST_ENDPOINT_FE = '/expenditure/all'
+export const EXPENDITURE_ANALYTICS_ENDPOINT_FE = '/expenditure/analytics'
