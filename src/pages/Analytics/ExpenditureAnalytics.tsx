@@ -31,13 +31,13 @@ const ExpenditureAnalytics = () => {
   const [mainCategoryChartData, setMainCategoryChartData] =
     useState<dataProps>();
   const [subCategoryChartData, setSubCategoryChartData] = useState<dataProps>();
-  const [payload, setPayload] = useState({ analytics_type: "monthly_data" });
+
 
   function onFailureCallBack(message: string) {
     toast.error(message);
   }
 
-  async function getApiResponse() {
+  async function getApiResponse(payload: any) {
     setLoading(true);
 
     const response = await APICall({
@@ -53,19 +53,24 @@ const ExpenditureAnalytics = () => {
     if (response) {
       if (payload.analytics_type === "monthly_data") {
         setMonthlyChartData(response);
+        setMainCategoryChartData(undefined);
+        setSubCategoryChartData(undefined);
       } else if (payload.analytics_type === "main_categories_analysis") {
         setMainCategoryChartData(response);
+        setSubCategoryChartData(undefined);
+      }
+      else if (payload.analytics_type === "sub_categories_analysis") {
+        setSubCategoryChartData(response)
       }
     }
   }
 
   useEffect(() => {
-    getApiResponse();
+    getApiResponse({ analytics_type: "monthly_data" });
   }, []);
 
   function handleBarClicked(filters: any) {
-    setPayload(filters);
-    getApiResponse();
+    getApiResponse(filters);
   }
 
   return (
@@ -81,11 +86,20 @@ const ExpenditureAnalytics = () => {
         <BarChartComponent
           chartData={monthlyChartData}
           handleBarClicked={handleBarClicked}
+          title="Monthly Analysis"
         />
         {mainCategoryChartData && (
           <BarChartComponent
             chartData={mainCategoryChartData}
             handleBarClicked={handleBarClicked}
+            title={`Main Category Analysis of ${mainCategoryChartData.metadata.month} month`}
+          />
+        )}
+        {subCategoryChartData && (
+          <BarChartComponent
+            chartData={subCategoryChartData}
+            handleBarClicked={handleBarClicked}
+            title={`Sub Category Analysis of ${subCategoryChartData.metadata.month} month for ${subCategoryChartData.metadata.category} Category`}
           />
         )}
       </div>

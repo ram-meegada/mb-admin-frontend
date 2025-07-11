@@ -7,23 +7,30 @@ import {
   CartesianGrid,
   Tooltip,
   ResponsiveContainer,
+  Cell
 } from "recharts";
 import type { dataProps } from "../pages/Analytics/ExpenditureAnalytics";
 
 type Props = {
   chartData?: dataProps;
   handleBarClicked: (filters: any) => void;
+  title?: string;
 };
 
-const BarChartComponent = ({ chartData, handleBarClicked }: Props) => {
+const BarChartComponent = ({ chartData, handleBarClicked, title }: Props) => {
   const metadata = chartData?.metadata;
+  const [ clickedIndex, setClickedIndex ] = useState<number>()
 
-  function BarClicked(data: any) {
+  function BarClicked(data: any, index: number) {
+    if (metadata?.link_to) {
+      setClickedIndex(index)
+    }
+
     if (metadata?.link_to) {
       handleBarClicked({
         year: metadata.year,
         month: data.payload.x,
-        category: metadata.category,
+        category: data.payload.x,
         analytics_type: metadata?.link_to,
       });
     }
@@ -33,12 +40,12 @@ const BarChartComponent = ({ chartData, handleBarClicked }: Props) => {
     <div
       style={{
         margin: "2rem",
-        height: 500,
         backgroundColor: "var(--hover-red-color)",
         padding: "1rem",
       }}
     >
-      <ResponsiveContainer>
+      <h2 style={{ margin: 0, marginBottom: '1rem', textAlign: 'center' }}>{title}</h2>
+      <ResponsiveContainer height={500}>
         <BarChart data={chartData?.bar_chart_data}>
           <CartesianGrid strokeDasharray="3 3" stroke="grey" />
           <XAxis dataKey="x" stroke="black" />
@@ -46,9 +53,15 @@ const BarChartComponent = ({ chartData, handleBarClicked }: Props) => {
           <Tooltip formatter={(val) => `₹${val}`} />
           <Bar
             dataKey="y"
-            fill="#286cf3"
-            onClick={(data) => BarClicked(data)}
-          />
+            onClick={BarClicked}
+          >
+            {chartData?.bar_chart_data.map((value, index) => (
+              <Cell
+              key={`bar-${index}`}
+              fill={index === clickedIndex ? "black" : "#286cf3"}
+              />
+            ))}
+          </Bar>
         </BarChart>
       </ResponsiveContainer>
     </div>
