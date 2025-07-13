@@ -10,3 +10,7 @@
     flex-direction: column;
     overflow: auto;
 }
+
+.recharts-rectangle {
+  cursor: pointer;
+}

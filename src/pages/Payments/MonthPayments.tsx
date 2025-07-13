@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 import APICall from "../../utils/callApiUtils";
 import { toast } from "react-toastify";
 import ToastComponent from "../../components/ToastComponent";
-import { PAYMENTS_LIST } from "../../utils/endpoints";
+import { CUSTOMER_BY_ID_ENDPOINT_FE, PAYMENTS_LIST, VIEW_MONTH_PAYMENT_ENDPOINT_FE } from "../../utils/endpoints";
 
 type apiDataProps = {
   customer: string;
@@ -31,10 +31,11 @@ const MonthPayments = () => {
   const [currentYearRevenue, setCurrentYearRevenue] = useState("");
 
   const tableHeaders = [
-    { name: "Customer", type: "actionLink" },
+    { name: "Customer", type: "actionLink", redirectTo: CUSTOMER_BY_ID_ENDPOINT_FE},
     { name: "Amount Due", type: "price" },
     { name: "Amount Paid", type: "price" },
     { name: "Total Paid", type: "boolean" },
+    { name: "View", type: "view_record", redirectTo: VIEW_MONTH_PAYMENT_ENDPOINT_FE},
   ];
 
   function onFailureCallBack(message: string) {

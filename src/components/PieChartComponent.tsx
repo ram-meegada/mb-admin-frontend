@@ -1,44 +1,20 @@
 import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import type { dataProps } from "../pages/Analytics/ExpenditureAnalytics";
 
-const data = [
-  {
-    x: "Animal purchase",
-    y: 120000.0,
-    color: "#26C6DA",
-  },
-  {
-    x: "Feed",
-    y: 60000.0,
-    color: "#EC407A",
-  },
-  {
-    x: "Medicine",
-    y: 30000.0,
-    color: "#D4E157",
-  },
-  {
-    x: "Dyper",
-    y: 2000.0,
-    color: "#D4E157",
-  },
-  {
-    x: "Mat",
-    y: 2600.0,
-    color: "#D4E157",
-  },
-  {
-    x: "Carpert",
-    y: 10000.0,
-    color: "#D4E157",
-  },
-  {
-    x: "laptop",
-    y: 67000.0,
-    color: "#D4E157",
-  },
-];
 
-const PieChartComponent = () => {
+type Props = {
+  chartData?: dataProps;
+  handleBarClicked?: (filters: any) => void;
+  title?: string;
+};
+
+const PieChartComponent = ({ chartData }: Props) => {
+  const total_sum = chartData?.bar_chart_data.reduce((curr, value) => value.y + curr, 0) || 1
+
+  function getPercentage(value: number) {
+    return ((value/total_sum)*100).toFixed(0)
+  }
+
   return (
     <div
       style={{
@@ -49,15 +25,15 @@ const PieChartComponent = () => {
         alignSelf: "center",
       }}
     >
-      <PieChart width={600} height={300}>
+      <PieChart width={400} height={300}>
         <Pie
-          data={data}
+          data={chartData?.bar_chart_data}
           dataKey="y"
           nameKey="x"
           cx="50%"
           cy="50%"
           outerRadius={100}
-          label={({ x, y, name }) => (
+          label={({ x, y, name, percent }) => (
             <text
               x={x}
               y={y}
@@ -65,11 +41,11 @@ const PieChartComponent = () => {
               textAnchor="middle"
               dominantBaseline="central"
             >
-              {name}
+              {`${name} (${percent ? (percent * 100).toFixed(0) : null}%)`}
             </text>
           )}
         >
-          {data.map((entry, index) => (
+          {chartData?.bar_chart_data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={entry.color} />
           ))}
         </Pie>
@@ -82,8 +58,7 @@ const PieChartComponent = () => {
           itemStyle={{ color: "black" }}
         />
         <Legend
-          wrapperStyle={{ color: "black" }}
-          formatter={(value) => <span style={{ color: "black" }}>{value}</span>}
+          formatter={(value) => <span style={{ color: "black" }}>{`${value}`}</span>}
         />
       </PieChart>
     </div>

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   BarChart,
   Bar,
@@ -10,6 +10,7 @@ import {
   Cell
 } from "recharts";
 import type { dataProps } from "../pages/Analytics/ExpenditureAnalytics";
+import PieChartComponent from "./PieChartComponent";
 
 type Props = {
   chartData?: dataProps;
@@ -20,6 +21,10 @@ type Props = {
 const BarChartComponent = ({ chartData, handleBarClicked, title }: Props) => {
   const metadata = chartData?.metadata;
   const [ clickedIndex, setClickedIndex ] = useState<number>()
+
+  useEffect(() => {
+    setClickedIndex(undefined)
+  }, [chartData])
 
   function BarClicked(data: any, index: number) {
     if (metadata?.link_to) {
@@ -45,25 +50,32 @@ const BarChartComponent = ({ chartData, handleBarClicked, title }: Props) => {
       }}
     >
       <h2 style={{ margin: 0, marginBottom: '1rem', textAlign: 'center' }}>{title}</h2>
-      <ResponsiveContainer height={500}>
-        <BarChart data={chartData?.bar_chart_data}>
-          <CartesianGrid strokeDasharray="3 3" stroke="grey" />
-          <XAxis dataKey="x" stroke="black" />
-          <YAxis tickFormatter={(val) => `₹${val}`} stroke="black" />
-          <Tooltip formatter={(val) => `₹${val}`} />
-          <Bar
-            dataKey="y"
-            onClick={BarClicked}
-          >
-            {chartData?.bar_chart_data.map((value, index) => (
-              <Cell
-              key={`bar-${index}`}
-              fill={index === clickedIndex ? "black" : "#286cf3"}
-              />
-            ))}
-          </Bar>
-        </BarChart>
-      </ResponsiveContainer>
+      <div style={{ display: 'flex' }}>
+        <ResponsiveContainer height={500}>
+          <BarChart data={chartData?.bar_chart_data}>
+            <CartesianGrid strokeDasharray="3 3" stroke="grey" />
+            <XAxis dataKey="x" stroke="black" />
+            <YAxis tickFormatter={(val) => `₹${val}`} stroke="black" />
+            <Tooltip formatter={(val) => `₹${val}`} />
+            <Bar
+              dataKey="y"
+              onClick={BarClicked}
+            >
+              {chartData?.bar_chart_data.map((value, index) => (
+                <Cell
+                key={`bar-${index}`}
+                fill={index === clickedIndex ? "#286cf3" : "#739ff5"}
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+        {!title?.includes('Monthly Analysis') &&
+        <div>
+          <PieChartComponent chartData={chartData}/>
+        </div>
+        }
+      </div>
     </div>
   );
 };

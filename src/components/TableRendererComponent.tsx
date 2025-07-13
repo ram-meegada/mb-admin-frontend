@@ -1,9 +1,12 @@
+import { useEffect, useState } from "react";
 import "../styles/tableRendererStyle.css";
-import { CUSTOMER_BY_ID_ENDPOINT_FE } from "../utils/endpoints";
+import viewRecordImage from '../assets/viewRecord.png'
+
 
 type tableHeadersProps = {
   name: string;
   type: string;
+  redirectTo?: string;
 };
 
 type Props = {
@@ -12,10 +15,15 @@ type Props = {
 };
 
 const TableRendererComponent = ({ tableHeaders, apiData }: Props) => {
-
   function getRowData(index: number, value: any) {
+    if (index >= tableHeaders.length) {
+      return;
+    }
+
     if (tableHeaders[index]["type"] == "actionLink") {
-      const endpoint = CUSTOMER_BY_ID_ENDPOINT_FE.replace(":id", value.id);
+      const endpoint =
+        tableHeaders[index]["redirectTo"] &&
+        tableHeaders[index]["redirectTo"].replace(":id", value.id);
       return (
         <td key={index}>
           <a href={`${endpoint}`}>{value.name}</a>
@@ -26,8 +34,23 @@ const TableRendererComponent = ({ tableHeaders, apiData }: Props) => {
     } else if (tableHeaders[index]["type"] == "boolean") {
       return <td key={index}>{value === true ? "Yes" : "No"}</td>;
     } else if (tableHeaders[index]["type"] == "price") {
-      const formatted_value = value ? `${value}/-` : `${value}`
+      const formatted_value = value ? `${value}/-` : `${value}`;
       return <td key={index}>{formatted_value}</td>;
+    } else if (tableHeaders[index]["type"] == "view_record") {
+      const endpoint =
+        tableHeaders[index]["redirectTo"] &&
+        tableHeaders[index]["redirectTo"].replace(":id", value);
+      return (
+        <td key={index}>
+          <a href={`${endpoint}`}>
+            <img
+              src={viewRecordImage}
+              alt="view"
+              className="tb-ed-view-record"
+            ></img>
+          </a>
+        </td>
+      );
     }
   }
 

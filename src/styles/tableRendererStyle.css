@@ -25,3 +25,12 @@ td {
     vertical-align: middle;
     background-color: var(--hover-red-color);
 }
+
+.tb-ed-view-record:hover {
+    cursor: pointer;
+}
+
+.tb-ed-view-record {
+    height: 2rem;
+    width: 2rem;
+}

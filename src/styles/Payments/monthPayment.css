@@ -1,0 +1,35 @@
+.payments-form-container {
+    margin: 2rem;
+    margin-left: 5rem;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--hover-red-color);
+    width: fit-content;
+    border-radius: 0.5rem;
+}
+
+.form-input {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.form-input label {
+    font-size: 1.5rem;
+    min-width: 10rem;
+    /* background-color: aqua; */
+}
+
+.form-input input {
+    padding: 1rem;
+    font-size: 1.3rem;
+}
+
+.form-input input[type="checkbox"] {
+    height: 1.3rem;
+    width: 1.3rem;
+}
+
+.form-input input[type="checkbox"]:hover {
+    cursor: pointer;
+}

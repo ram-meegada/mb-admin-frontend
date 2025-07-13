@@ -18,7 +18,7 @@ const APICall = async ({
   formData,
 }: Props) => {
   try {
-    const BEARER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyMjUxMDI4LCJpYXQiOjE3NTIxNjQ2MjgsImp0aSI6IjBhMGEyMjE5YjI5ZTQzZTc4YTZiOTA3ZWE5MzljZWFiIiwidXNlcl9pZCI6M30.8LVRsFS6BI4cgy8eUTWPcrjXO2xB508dbX7L_EXx_is";
+    const BEARER_TOKEN = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUyNDc1MDUzLCJpYXQiOjE3NTIzODg2NTMsImp0aSI6IjhkNDE5NjcwMTUyZTQ0NTc4NzE2ODUwMjI0ZjFhMmEyIiwidXNlcl9pZCI6M30.lg2b3SQC3MTvKRzeK1_zj00oUSl3cszm08OVZlDae5s";
     let json_response = null;
     const options: any = {
       method: method,

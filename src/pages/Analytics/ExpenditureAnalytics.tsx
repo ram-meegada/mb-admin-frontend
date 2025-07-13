@@ -15,7 +15,7 @@ import APICall from "../../utils/callApiUtils";
 import { FETCH_EXPENDITURE_GRAPH_DATA } from "../../utils/endpoints";
 
 export type dataProps = {
-  bar_chart_data: { x: string; y: string }[];
+  bar_chart_data: { x: string; y: number; color?: string }[];
   metadata: {
     year: string;
     month?: string;
@@ -88,20 +88,20 @@ const ExpenditureAnalytics = () => {
           handleBarClicked={handleBarClicked}
           title="Monthly Analysis"
         />
-        {mainCategoryChartData && (
+        {mainCategoryChartData ? (
           <BarChartComponent
             chartData={mainCategoryChartData}
             handleBarClicked={handleBarClicked}
             title={`Main Category Analysis of ${mainCategoryChartData.metadata.month} month`}
           />
-        )}
-        {subCategoryChartData && (
+        ) : null}
+        {subCategoryChartData ? (
           <BarChartComponent
             chartData={subCategoryChartData}
             handleBarClicked={handleBarClicked}
             title={`Sub Category Analysis of ${subCategoryChartData.metadata.month} month for ${subCategoryChartData.metadata.category} Category`}
           />
-        )}
+        ) : null}
       </div>
       <ToastComponent />
     </>
