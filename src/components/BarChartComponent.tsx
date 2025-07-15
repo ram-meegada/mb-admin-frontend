@@ -12,6 +12,7 @@ import {
 import type { dataProps } from "../pages/Analytics/ExpenditureAnalytics";
 import PieChartComponent from "./PieChartComponent";
 
+
 type Props = {
   chartData?: dataProps;
   handleBarClicked: (filters: any) => void;
@@ -70,10 +71,10 @@ const BarChartComponent = ({ chartData, handleBarClicked, title }: Props) => {
             </Bar>
           </BarChart>
         </ResponsiveContainer>
-        {!title?.includes('Monthly Analysis') &&
-        <div>
-          <PieChartComponent chartData={chartData}/>
-        </div>
+        {!['Monthly Analysis'].includes(`${title}`) &&
+          <div>
+            <PieChartComponent chartData={chartData}/>
+          </div>
         }
       </div>
     </div>

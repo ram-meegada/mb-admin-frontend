@@ -11,6 +11,7 @@ import {
   HOME_ENDPOINT_FE,
   LOGIN_ENDPOINT_FE,
   MONTH_PAYMENTS_ENDPOINT_FE,
+  PAYMENTS_ANALYTICS_ENDPOINT_FE,
   STOCKS_LIST_ENDPOINT_FE,
   VIEW_MONTH_PAYMENT_ENDPOINT_FE,
 } from "./utils/endpoints";
@@ -20,6 +21,7 @@ import CutomerDetailsById from "./pages/Customers/CutomerDetailsById";
 import ExpenditureList from "./pages/Expenditure/ExpenditureList";
 import ExpenditureAnalytics from "./pages/Analytics/ExpenditureAnalytics";
 import MonthlyPaymentView from "./pages/Payments/MonthlyPaymentView";
+import PaymentsAnalytics from "./pages/Analytics/PaymentsAnalytics";
 
 function App() {
   return (
@@ -38,6 +40,7 @@ function App() {
           <Route path={EXPENDITURE_LIST_ENDPOINT_FE} element={<ExpenditureList />} />
           <Route path={EXPENDITURE_ANALYTICS_ENDPOINT_FE} element={<ExpenditureAnalytics />} />
           <Route path={VIEW_MONTH_PAYMENT_ENDPOINT_FE} element={<MonthlyPaymentView />} />
+          <Route path={PAYMENTS_ANALYTICS_ENDPOINT_FE} element={<PaymentsAnalytics />} />
         </Routes>
       </BrowserRouter>
     </>
