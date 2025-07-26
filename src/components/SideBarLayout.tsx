@@ -15,7 +15,8 @@ import {
   SIDEBAR_CUSTOMER_LIST,
   SIDEBAR_EXPENDITURE_LIST,
   SIDEBAR_EXPENDITURE_ANALYTICS,
-  SIDEBAR_PAYMENTS_ANALYTICS
+  SIDEBAR_PAYMENTS_ANALYTICS,
+  SIDEBAR_MARGIN_ANALYTICS
 } from "../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 
@@ -49,6 +50,7 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
       backgroundColor:
         subMenuSelected == text
           ? "var(--page-background-color)"
+          // ? "#83a4f2"
           : "var(--hover-red-color)",
     };
   }
@@ -185,6 +187,13 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
               style={getSubMenuSelectedStyle(SIDEBAR_PAYMENTS_ANALYTICS)}
             >
               Payment Analytics
+            </li>
+            <li
+              className="sidebar-dropdown-item"
+              onClick={() => handleSubMenuSelect(SIDEBAR_MARGIN_ANALYTICS)}
+              style={getSubMenuSelectedStyle(SIDEBAR_MARGIN_ANALYTICS)}
+            >
+              Margin Analytics
             </li>
           </ul>
         )}

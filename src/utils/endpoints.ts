@@ -36,6 +36,7 @@ export const GET_CUSTOMER = BASE_URL + CUSTOMERS_ENDPOINTS
 export const PAYMENTS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'payments/'
 export const VIEW_PAYMENT_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'view-payment/'
 export const PAYMENT_ANALYTICS = BASE_URL + CUSTOMERS_ENDPOINTS + 'payment-analytics/'
+export const MARGIN_ANALYTICS = BASE_URL + CUSTOMERS_ENDPOINTS + 'margin-analytics/'
 
 
 
@@ -50,4 +51,5 @@ export const CUSTOMER_BY_ID_ENDPOINT_FE = '/customer/:id'
 export const EXPENDITURE_LIST_ENDPOINT_FE = '/expenditure/all'
 export const EXPENDITURE_ANALYTICS_ENDPOINT_FE = '/expenditure/analytics'
 export const PAYMENTS_ANALYTICS_ENDPOINT_FE = '/payments/analytics'
+export const MARGIN_ANALYTICS_ENDPOINT_FE = '/margin/analytics'
 export const VIEW_MONTH_PAYMENT_ENDPOINT_FE = '/payment/:id'
