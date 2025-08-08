@@ -14,6 +14,8 @@ import type { dataProps } from "../pages/Analytics/ExpenditureAnalytics";
 import PieChartComponent from "./PieChartComponent";
 
 
+const MonthKeys = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
 type Props = {
   chartData?: dataProps;
   handleBarClicked: (filters: any) => void;
@@ -57,7 +59,7 @@ const BarChartComponent = ({ chartData, handleBarClicked, title, symbol='₹', d
 
       handleBarClicked({
         year: metadata.year,
-        month: data.payload.x,
+        month: MonthKeys.includes(metadata.month || '') ? metadata.month : data.payload.x,
         category: data.payload.x,
         analytics_type: metadata?.link_to,
       });
