@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SidebarLayout from "../../components/SideBarLayout";
 import {
@@ -12,6 +12,7 @@ import { GET_CUSTOMER } from "../../utils/endpoints";
 import ToastComponent from "../../components/ToastComponent";
 import LoaderModal from "../../components/Loader";
 import "../../styles/Customers/CustomerById.css";
+import { useAuth } from "../../contexts/AuthContext";
 
 type apiDataProps = {
   user: { id: number; name: string; username: string };
@@ -28,6 +29,7 @@ const CutomerDetailsById = () => {
   const [loading, setLoading] = useState(false);
   const [apiResponse, setApiResponse] = useState<apiDataProps>();
   const navigate = useNavigate();
+  const { accessToken, setAccessToken } = useAuth()
 
   function onFailureCallBack(message: string) {
     toast.error(message);
@@ -43,6 +45,8 @@ const CutomerDetailsById = () => {
         onFailure: onFailureCallBack,
         contentType: "application/json",
         navigate: navigate,
+        accessToken: accessToken,
+        setAccessToken
       });
       setLoading(false);
       if (response) {

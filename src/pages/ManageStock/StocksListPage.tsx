@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SidebarLayout from "../../components/SideBarLayout";
 import {
   SIDEBAR_STOCKS_LIST,
@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import ToastComponent from "../../components/ToastComponent";
 import { toast } from 'react-toastify';
 import LoaderModal from "../../components/Loader";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 type dataProps = {
@@ -29,9 +30,10 @@ type dataProps = {
 }
 
 const StocksListPage = () => {
-  const [showCollapsed, setShowCollapsed] = useState(false);
+  const [showCollapsed, _] = useState(false);
   const [apiresponse, SetApiResponse] = useState<dataProps[]>([])
   const [ loading, setLoading ] = useState(false)
+  const { accessToken, setAccessToken } = useAuth()
 
   const navigate = useNavigate();
 
@@ -48,7 +50,9 @@ const StocksListPage = () => {
         endPoint: LIST_STOCKS_ENDPOINT,
         onFailure: onFailureCallBack,
         contentType: "application/json",
-        navigate: navigate
+        navigate: navigate,
+        accessToken: accessToken,
+        setAccessToken
       })
       setLoading(false)
       if (response) {

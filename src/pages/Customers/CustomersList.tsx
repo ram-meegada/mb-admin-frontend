@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import LoaderModal from "../../components/Loader";
 import SidebarLayout from "../../components/SideBarLayout";
 import { pageHeadingStyle, SIDEBAR_CUSTOMER_LIST, SIDEBAR_CUSTOMERS } from "../../utils/commonUtils";
@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import ToastComponent from "../../components/ToastComponent";
 import TableRendererComponent from "../../components/TableRendererComponent";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 type apiDataProps = {
@@ -19,6 +20,7 @@ type apiDataProps = {
 };
 
 const CustomersList = () => {
+  const { accessToken, setAccessToken } = useAuth()
 	const [ loading, setLoading ] = useState(false)
 	const navigate = useNavigate();
 	const [apiResponse, setApiResponse] = useState<apiDataProps[]>([])
@@ -46,7 +48,9 @@ const CustomersList = () => {
         endPoint: CUSTOMERS_LIST,
         onFailure: onFailureCallBack,
         contentType: "application/json",
-        navigate: navigate
+        navigate: navigate,
+        accessToken: accessToken,
+        setAccessToken: setAccessToken
       })
       setLoading(false)
       if (response) {

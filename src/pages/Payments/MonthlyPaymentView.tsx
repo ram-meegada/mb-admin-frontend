@@ -14,6 +14,7 @@ import APICall from "../../utils/callApiUtils";
 import { toast } from "react-toastify";
 import { VIEW_PAYMENT_LIST } from "../../utils/endpoints";
 import ToastComponent from "../../components/ToastComponent";
+import { useAuth } from "../../contexts/AuthContext";
 
 type apiDataProps = {
   name: string;
@@ -27,6 +28,7 @@ type apiDataProps = {
 const MonthlyPaymentView = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { accessToken, setAccessToken } = useAuth()
   const [loading, setLoading] = useState(false);
   const [apiData, setApiData] = useState<apiDataProps>({
     name: "",
@@ -45,7 +47,7 @@ const MonthlyPaymentView = () => {
 
     setLoading(true);
 
-    const response = await APICall({
+    await APICall({
       method: "PATCH",
       Accept: "application/json",
       endPoint: `${VIEW_PAYMENT_LIST}${id}/`,
@@ -53,6 +55,8 @@ const MonthlyPaymentView = () => {
       contentType: "application/json",
       navigate: navigate,
       formData: apiData,
+      accessToken: accessToken,
+      setAccessToken
     });
     setLoading(false);
     toast.success("Payment details updated.");
@@ -68,6 +72,8 @@ const MonthlyPaymentView = () => {
         onFailure: onFailureCallBack,
         contentType: "application/json",
         navigate: navigate,
+        accessToken: accessToken,
+        setAccessToken
       });
       setLoading(false);
       if (response) {

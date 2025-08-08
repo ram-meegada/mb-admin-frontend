@@ -5,7 +5,7 @@ import { SIDEBAR_DASHBOARD } from "../utils/commonUtils";
 const HomePage = () => {
   return (
     <>
-        <SidebarLayout optionSelected={SIDEBAR_DASHBOARD}/>
+        <SidebarLayout mainOptionSelected = {SIDEBAR_DASHBOARD} optionSelected={SIDEBAR_DASHBOARD}/>
     </>
   );
 };

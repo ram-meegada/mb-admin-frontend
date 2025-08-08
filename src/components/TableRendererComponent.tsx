@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import "../styles/tableRendererStyle.css";
-import viewRecordImage from '../assets/viewRecord.png'
+import viewRecordImage from '../assets/viewRecord.png';
+import { Link } from 'react-router-dom';
 
 
 type tableHeadersProps = {
@@ -26,7 +26,7 @@ const TableRendererComponent = ({ tableHeaders, apiData }: Props) => {
         tableHeaders[index]["redirectTo"].replace(":id", value.id);
       return (
         <td key={index}>
-          <a href={`${endpoint}`}>{value.name}</a>
+          <Link to={`${endpoint}`}>{value.name}</Link>
         </td>
       );
     } else if (["number", "string"].includes(tableHeaders[index]["type"])) {
