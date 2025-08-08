@@ -4,6 +4,7 @@ import { LOGIN_ENDPOINT } from "../../utils/endpoints";
 import ToastComponent from "../../components/ToastComponent";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from "../../contexts/AuthContext";
 
 
 type payloadProps = {
@@ -13,6 +14,7 @@ type payloadProps = {
 
 const LoginPage = () => {
   const navigate = useNavigate();
+  const { setAccessToken } = useAuth()
 
   const [payload, setPayload] = useState<payloadProps>({'username': '', 'password': ''});
 
@@ -22,6 +24,7 @@ const LoginPage = () => {
 		try {
 			const callAPI = await fetch(LOGIN_ENDPOINT, {
 				method: "POST",
+        credentials: "include",
 				body: JSON.stringify(payload),
 				headers: {
           Accept: "application/json",
@@ -33,7 +36,9 @@ const LoginPage = () => {
 
       if (callAPI.ok) {
         if (json_response.data.role === 1) {
+          setAccessToken(json_response.data.access_token)
           navigate('/home', {replace: true})
+         return
         }
         toast.error("You do not have access to login")
         return

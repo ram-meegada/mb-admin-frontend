@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SidebarLayout from "../../components/SideBarLayout";
 import LoaderModal from "../../components/Loader";
 import {
@@ -13,6 +13,7 @@ import { PAYMENT_ANALYTICS } from "../../utils/endpoints";
 import DropDownComponent from "../../components/DropDownComponent";
 import BarChartComponent from "../../components/BarChartComponent";
 import ToastComponent from "../../components/ToastComponent";
+import { useAuth } from "../../contexts/AuthContext";
 
 export type dataProps = {
   bar_chart_data: { x: string; y: number; color?: string }[];
@@ -28,6 +29,7 @@ const PaymentsAnalytics = () => {
   const [loading, setLoading] = useState(false);
   const [apiResponse, setApiResponse] = useState<dataProps>();
   const navigate = useNavigate();
+  const { accessToken, setAccessToken } = useAuth();
 
   function onFailureCallBack(message: string) {
     toast.error(message);
@@ -45,7 +47,9 @@ const PaymentsAnalytics = () => {
         onFailure: onFailureCallBack,
         contentType: "application/json",
         navigate: navigate,
-				formData: PAYLOAD
+				formData: PAYLOAD,
+        accessToken: accessToken,
+        setAccessToken
       });
       setLoading(false);
 			
@@ -56,7 +60,7 @@ const PaymentsAnalytics = () => {
     getApiResponse();
   }, []);
 
-	function handleBarClicked(filters: any) {
+	function handleBarClicked() {
 
   }
 

@@ -92,7 +92,7 @@ const BarChartComponent = ({ chartData, handleBarClicked, title, symbol='₹', d
               dataKey="y"
               onClick={BarClicked}
             >
-              {chartData?.bar_chart_data.map((value, index) => (
+              {chartData?.bar_chart_data.map((_, index) => (
                 <Cell
                 key={`bar-${index}`}
                 fill={index === clickedIndex ? "#286cf3" : "#739ff5"}

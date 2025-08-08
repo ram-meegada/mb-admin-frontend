@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import LoaderModal from '../../components/Loader'
 import SidebarLayout from '../../components/SideBarLayout'
 import { pageHeadingStyle, SIDEBAR_EXPENDITURE, SIDEBAR_EXPENDITURE_LIST } from '../../utils/commonUtils'
@@ -8,6 +8,7 @@ import { toast } from 'react-toastify'
 import APICall from '../../utils/callApiUtils'
 import { useNavigate } from 'react-router-dom'
 import { ADD_EXPENDITURE } from '../../utils/endpoints'
+import { useAuth } from '../../contexts/AuthContext'
 
 
 type apiDataProps = {
@@ -23,6 +24,7 @@ const ExpenditureList = () => {
 	const [ loading, setLoading ] = useState(false)
 	const [ apiResponse, setApiResponse ] = useState<apiDataProps[]>([])
 	const [ currentYearExpenditure, setCurrentYearExpenditure ] = useState("")
+  const { accessToken, setAccessToken } = useAuth()
 
 	const tableHeaders = [
 	{'name': 'Category', 'type': 'string'},
@@ -37,6 +39,7 @@ const ExpenditureList = () => {
 			}
 
 	useEffect(() => {
+    
 		async function getApiResponse() {
       setLoading(true)
       const response = await APICall({
@@ -45,7 +48,9 @@ const ExpenditureList = () => {
         endPoint: ADD_EXPENDITURE,
         onFailure: onFailureCallBack,
         contentType: "application/json",
-        navigate: navigate
+        navigate: navigate,
+        accessToken: accessToken,
+        setAccessToken
       })
       setLoading(false)
       if (response) {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   pageHeadingStyle,
   SIDEBAR_MONTH_PAYMENTS,
@@ -12,6 +12,7 @@ import APICall from "../../utils/callApiUtils";
 import { toast } from "react-toastify";
 import ToastComponent from "../../components/ToastComponent";
 import { CUSTOMER_BY_ID_ENDPOINT_FE, PAYMENTS_LIST, VIEW_MONTH_PAYMENT_ENDPOINT_FE } from "../../utils/endpoints";
+import { useAuth } from "../../contexts/AuthContext";
 
 type apiDataProps = {
   customer: string;
@@ -21,6 +22,7 @@ type apiDataProps = {
 };
 
 const MonthPayments = () => {
+  const { accessToken, setAccessToken } = useAuth()
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [apiResponse, setApiResponse] = useState<apiDataProps[]>([]);
@@ -52,6 +54,8 @@ const MonthPayments = () => {
         onFailure: onFailureCallBack,
         contentType: "application/json",
         navigate: navigate,
+        accessToken: accessToken,
+        setAccessToken
       });
       setLoading(false);
       if (response) {

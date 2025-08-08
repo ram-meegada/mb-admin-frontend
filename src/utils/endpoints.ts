@@ -1,10 +1,11 @@
-export const BASE_URL = "http://127.0.0.1:8001/"
+export const BASE_URL = "http://localhost:8001/"
 // export const BASE_URL = "http://192.168.1.23:8001/"
 
 // Auth
 const AUTH = "user/auth/"
 export const LOGIN_ENDPOINT = BASE_URL + AUTH + "login/"
 export const DETAILS_ENDPOINT = BASE_URL + AUTH + "details/"
+export const REFRESH_TOKEN_ENDPOINT = BASE_URL + AUTH + "api/token/refresh/"
 
 // Endpoints for Livestock
 const LIVE_STOCK_COMMON_ENDPOINT = "live-stock/"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import ToastComponent from "../../components/ToastComponent";
 import {
   pageHeadingStyle,
@@ -13,6 +13,7 @@ import DropDownComponent from "../../components/DropDownComponent";
 import { toast } from "react-toastify";
 import APICall from "../../utils/callApiUtils";
 import { FETCH_EXPENDITURE_GRAPH_DATA } from "../../utils/endpoints";
+import { useAuth } from "../../contexts/AuthContext";
 
 export type dataProps = {
   bar_chart_data: { x: string; y: number; color?: string }[];
@@ -26,6 +27,7 @@ export type dataProps = {
 
 const ExpenditureAnalytics = () => {
   const navigate = useNavigate();
+  const { accessToken, setAccessToken } = useAuth()
   const [loading, setLoading] = useState(false);
   const [monthlyChartData, setMonthlyChartData] = useState<dataProps>();
   const [mainCategoryChartData, setMainCategoryChartData] =
@@ -48,6 +50,8 @@ const ExpenditureAnalytics = () => {
       contentType: "application/json",
       navigate: navigate,
       formData: payload,
+      accessToken: accessToken,
+      setAccessToken: setAccessToken
     });
     setLoading(false);
     if (response) {

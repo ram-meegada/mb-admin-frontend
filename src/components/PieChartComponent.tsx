@@ -9,11 +9,6 @@ type Props = {
 };
 
 const PieChartComponent = ({ chartData }: Props) => {
-  const total_sum = chartData?.bar_chart_data.reduce((curr, value) => value.y + curr, 0) || 1
-
-  function getPercentage(value: number) {
-    return ((value/total_sum)*100).toFixed(0)
-  }
 
   return (
     <div

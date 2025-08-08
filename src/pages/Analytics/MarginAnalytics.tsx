@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SidebarLayout from "../../components/SideBarLayout";
 import LoaderModal from "../../components/Loader";
 import {
   pageHeadingStyle,
   SIDEBAR_ANALYTICS,
   SIDEBAR_MARGIN_ANALYTICS,
-  SIDEBAR_PAYMENTS_ANALYTICS,
 } from "../../utils/commonUtils";
 import { toast } from "react-toastify";
 import APICall from "../../utils/callApiUtils";
@@ -14,6 +13,7 @@ import DropDownComponent from "../../components/DropDownComponent";
 import BarChartComponent from "../../components/BarChartComponent";
 import ToastComponent from "../../components/ToastComponent";
 import { MARGIN_ANALYTICS } from "../../utils/endpoints";
+import { useAuth } from "../../contexts/AuthContext";
 
 
 type MonthKeys = "Jan" | "Feb" | "Mar" | "Apr" | "May" | "Jun" | "Jul" | "Aug" | "Sep" | "Oct" | "Nov" | "Dec";
@@ -31,6 +31,7 @@ export type dataProps = {
 
 const MarginAnalytics = () => {
   const [loading, setLoading] = useState(false);
+  const { accessToken, setAccessToken } = useAuth();
   const [apiResponse, setApiResponse] = useState<dataProps>();
   const navigate = useNavigate();
   const [ monthExpenditure, setMonthExpenditure ] = useState<number>()
@@ -54,6 +55,8 @@ const MarginAnalytics = () => {
         contentType: "application/json",
         navigate: navigate,
         formData: PAYLOAD,
+        accessToken: accessToken,
+        setAccessToken
       });
       setLoading(false);
 
