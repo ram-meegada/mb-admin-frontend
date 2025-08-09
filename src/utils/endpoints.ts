@@ -1,5 +1,5 @@
-export const BASE_URL = "http://localhost:8001/"
-// export const BASE_URL = "http://192.168.1.23:8001/"
+// export const BASE_URL = "http://localhost:8001/"
+export const BASE_URL = "https://mb-business-backend.onrender.com/"
 
 // Auth
 const AUTH = "user/auth/"
