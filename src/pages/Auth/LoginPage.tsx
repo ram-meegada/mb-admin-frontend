@@ -5,6 +5,7 @@ import ToastComponent from "../../components/ToastComponent";
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from "../../contexts/AuthContext";
+import LoaderModal from "../../components/Loader";
 
 
 type payloadProps = {
@@ -15,13 +16,14 @@ type payloadProps = {
 const LoginPage = () => {
   const navigate = useNavigate();
   const { setAccessToken } = useAuth()
+  const [ loading, setLoading ] = useState(false)
 
   const [payload, setPayload] = useState<payloadProps>({'username': '', 'password': ''});
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
-
 		try {
+      setLoading(true)
 			const callAPI = await fetch(LOGIN_ENDPOINT, {
 				method: "POST",
         credentials: "include",
@@ -49,11 +51,14 @@ const LoginPage = () => {
       }
 		}
 		catch (err) {
+      setLoading(true)
       console.log(err, '----err------')
 		}
+  setLoading(true)  
   }
   return (
     <div className="login-root">
+      {loading && <LoaderModal />}
       <form onSubmit={handleLogin}>
         <div className="login-card">
           <h2 style={{ color: "white" }}>Login</h2>
