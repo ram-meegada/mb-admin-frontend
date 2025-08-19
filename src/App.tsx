@@ -12,6 +12,7 @@ import {
   LOGIN_ENDPOINT_FE,
   MARGIN_ANALYTICS_ENDPOINT_FE,
   MONTH_PAYMENTS_ENDPOINT_FE,
+  ORDERS_LISTING_ENDPOINT_FE,
   PAYMENTS_ANALYTICS_ENDPOINT_FE,
   STOCKS_LIST_ENDPOINT_FE,
   VIEW_MONTH_PAYMENT_ENDPOINT_FE,
@@ -24,6 +25,7 @@ import ExpenditureAnalytics from "./pages/Analytics/ExpenditureAnalytics";
 import MonthlyPaymentView from "./pages/Payments/MonthlyPaymentView";
 import PaymentsAnalytics from "./pages/Analytics/PaymentsAnalytics";
 import MarginAnalytics from "./pages/Analytics/MarginAnalytics";
+import OrdersListPage from "./pages/Orders/OrdersListPage";
 
 function App() {
   return (
@@ -44,6 +46,7 @@ function App() {
           <Route path={VIEW_MONTH_PAYMENT_ENDPOINT_FE} element={<MonthlyPaymentView />} />
           <Route path={PAYMENTS_ANALYTICS_ENDPOINT_FE} element={<PaymentsAnalytics />} />
           <Route path={MARGIN_ANALYTICS_ENDPOINT_FE} element={<MarginAnalytics />} />
+          <Route path={ORDERS_LISTING_ENDPOINT_FE} element={<OrdersListPage />} />
         </Routes>
       </BrowserRouter>
     </>

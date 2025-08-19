@@ -18,12 +18,13 @@ th {
 
 td {
     height: 1.8rem;
-    width: fit-content;
+    /* width: fit-content; */
     color: black;
     font-size: 1.2rem;
     text-align: center;
     vertical-align: middle;
     background-color: var(--hover-red-color);
+    max-width: 200px;
 }
 
 .tb-ed-view-record:hover {

@@ -16,7 +16,9 @@ import {
   SIDEBAR_EXPENDITURE_LIST,
   SIDEBAR_EXPENDITURE_ANALYTICS,
   SIDEBAR_PAYMENTS_ANALYTICS,
-  SIDEBAR_MARGIN_ANALYTICS
+  SIDEBAR_MARGIN_ANALYTICS,
+  SIDEBAR_ORDERS,
+  SIDEBAR_ORDERS_LIST
 } from "../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 
@@ -222,6 +224,31 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
           </ul>
         )}
       </div>
+
+      <div className="sidebar-dropdown-div">
+        <button
+          className="dropdown-btn"
+          style={getOptionSelectedStyle(SIDEBAR_ORDERS)}
+          onClick={() => handleDropDownSelect(SIDEBAR_ORDERS)}
+        >
+          Orders{" "}
+          <i className="sidebar-dropdown-symbol">
+            {dropDownSelected == SIDEBAR_ORDERS ? "▲" : "▼"}
+          </i>
+        </button>
+        {dropDownSelected == SIDEBAR_ORDERS && (
+          <ul className="sidebar-dropdown-submenu">
+            <li
+              className="sidebar-dropdown-item"
+              onClick={() => handleSubMenuSelect(SIDEBAR_ORDERS_LIST)}
+              style={getSubMenuSelectedStyle(SIDEBAR_ORDERS_LIST)}
+            >
+              Daily Orders
+            </li>
+          </ul>
+        )}
+      </div>
+
     </div>
   );
 };

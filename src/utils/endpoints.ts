@@ -1,5 +1,6 @@
-// export const BASE_URL = "http://localhost:8001/"
-export const BASE_URL = "https://mb-business-backend.onrender.com/"
+export const BASE_URL = import.meta.env.VITE_LOCAL_BASE_URL
+
+// export const BASE_URL = "https://mb-business-backend.onrender.com/"
 
 // Auth
 const AUTH = "user/auth/"
@@ -39,6 +40,9 @@ export const VIEW_PAYMENT_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'view-payment/
 export const PAYMENT_ANALYTICS = BASE_URL + CUSTOMERS_ENDPOINTS + 'payment-analytics/'
 export const MARGIN_ANALYTICS = BASE_URL + CUSTOMERS_ENDPOINTS + 'margin-analytics/'
 
+// Orders
+export const ORDERS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'orders/'
+
 
 
 // ######################################### Front End Endpoints ########################################## //
@@ -54,3 +58,4 @@ export const EXPENDITURE_ANALYTICS_ENDPOINT_FE = '/expenditure/analytics'
 export const PAYMENTS_ANALYTICS_ENDPOINT_FE = '/payments/analytics'
 export const MARGIN_ANALYTICS_ENDPOINT_FE = '/margin/analytics'
 export const VIEW_MONTH_PAYMENT_ENDPOINT_FE = '/payment/:id'
+export const ORDERS_LISTING_ENDPOINT_FE = '/orders'
