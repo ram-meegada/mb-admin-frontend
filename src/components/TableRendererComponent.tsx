@@ -3,6 +3,8 @@ import viewRecordImage from '../assets/viewRecord.png';
 import { Link } from 'react-router-dom';
 
 
+// actionLink boolean price view_record
+
 type tableHeadersProps = {
   name: string;
   type: string;
@@ -40,15 +42,16 @@ const TableRendererComponent = ({ tableHeaders, apiData }: Props) => {
       const endpoint =
         tableHeaders[index]["redirectTo"] &&
         tableHeaders[index]["redirectTo"].replace(":id", value);
+      
       return (
         <td key={index}>
-          <a href={`${endpoint}`}>
+          <Link to={`${endpoint}`}>
             <img
               src={viewRecordImage}
               alt="view"
               className="tb-ed-view-record"
             ></img>
-          </a>
+          </Link>
         </td>
       );
     }

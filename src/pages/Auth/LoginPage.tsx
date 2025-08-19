@@ -46,15 +46,15 @@ const LoginPage = () => {
         return
       }
       else {
-        toast.error(json_response.message)
+        toast.error(json_response.message || "Something went wrong")
         return
       }
 		}
 		catch (err) {
-      setLoading(true)
+      setLoading(false)
       console.log(err, '----err------')
 		}
-  setLoading(true)  
+  setLoading(false)  
   }
   return (
     <div className="login-root">
