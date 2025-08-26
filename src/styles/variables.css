@@ -1,7 +1,8 @@
 :root {
-  /* --primary-background-color: #ff3333; */
-  --primary-background-color: #f34242;
+  --primary-background-color: black;
+  /* --primary-background-color: #f34242; */
   --page-background-color: #232323;
-  --hover-red-color: #f1948a;
+  /* --hover-red-color: #f1948a; */
+  --hover-red-color: #e80ff7;
   --main-card-margin-left: 17% 
 }

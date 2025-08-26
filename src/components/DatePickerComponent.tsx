@@ -8,11 +8,12 @@ import { useEffect, useState } from "react";
 
 type Props = {
   onDateSelect: (dateSelected: string | null) => void;
-  defaultDate?: string | null
+  defaultDate?: string | null;
+  label?: string
 }
 
 
-export default function DatePickerComponent({onDateSelect, defaultDate}: Props) {
+export default function DatePickerComponent({onDateSelect, defaultDate, label}: Props) {
   const [ selectedDate, setSelectedDate ] = useState<Dayjs | null>(null)
 
   function handleDateChange(date: Dayjs | null) {
@@ -34,11 +35,16 @@ export default function DatePickerComponent({onDateSelect, defaultDate}: Props) 
           value={selectedDate}
           onChange={(date) => handleDateChange(date)}
           format="YYYY-MM-DD"
+          label={label || 'Select date'}
           slotProps={{
             textField: {
               fullWidth: true,
               sx: {
-                backgroundColor: "white",
+                backgroundColor: "grey",
+                // border: 'solid',
+                // borderWidth: 1,
+                // borderColor: 'var(--hover-red-color)',
+                // color: 'red'
               },
             },
             field: {
