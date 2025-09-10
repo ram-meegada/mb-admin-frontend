@@ -1,4 +1,7 @@
-export const BASE_URL = import.meta.env.VITE_LOCAL_BASE_URL
+export const BASE_URL = 'https://mb-business-backend.onrender.com/'
+
+// VITE_LOCAL_BASE_URL = "http://localhost:8001/"
+// VITE_BASE_URL = "https://mb-business-backend.onrender.com/"
 
 // export const BASE_URL = "https://mb-business-backend.onrender.com/"
 
