@@ -1,10 +1,7 @@
 import { useState } from "react";
 import LoaderModal from "../../components/Loader";
-import SidebarLayout from "../../components/SideBarLayout";
 import {
   pageHeadingStyle,
-  SIDEBAR_ADD_STOCK,
-  SIDEBAR_MANAGE_STOCK,
 } from "../../utils/commonUtils";
 import DropDownComp from "../../components/MUI_COMPONENTS/DropDownComp";
 import { Button, InputAdornment, Stack, TextField, Typography } from "@mui/material";

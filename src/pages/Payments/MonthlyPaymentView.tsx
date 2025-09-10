@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import LoaderModal from "../../components/Loader";
-import SidebarLayout from "../../components/SideBarLayout";
 import {
   pageHeadingStyle,
-  SIDEBAR_MONTH_PAYMENTS,
-  SIDEBAR_PAYMENTS,
 } from "../../utils/commonUtils";
 import "../../styles/Payments/monthPayment.css";
 import DatePickerComponent from "../../components/DatePickerComponent";

@@ -58,7 +58,7 @@ const OrdersListPage = () => {
       flex: 1,
       sortable: true,
       type: "number",
-      valueGetter: (value, row) => (row.price_at_order),
+      valueGetter: (_, row) => (row.price_at_order),
       renderCell: (param) => (
         `${param.row.price_at_order} /-`
       )

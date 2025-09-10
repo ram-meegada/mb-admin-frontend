@@ -28,7 +28,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link, useLocation } from "react-router-dom";
 import {
   ADD_CUSTOMER_ENDPOINT_FE,
-  ADD_ORDERS_ENDPOINT_FE,
   ALL_CUSTOMERS_ENDPOINT_FE,
   EXPENDITURE_ADD_ENDPOINT_FE,
   EXPENDITURE_ANALYTICS_ENDPOINT_FE,
@@ -46,7 +45,6 @@ const drawerWidth = 250;
 
 export default function SidebarMuiComp() {
   const [openSub, setOpenSub] = React.useState(0);
-  const [selected, setSelected] = React.useState<string | null>(null);
   const location = useLocation()
 
   const handleClick = (ind: number) => {
@@ -55,10 +53,6 @@ export default function SidebarMuiComp() {
       return;
     }
     setOpenSub(ind);
-  };
-
-  const handleSelect = (option: string) => {
-    setSelected(option);
   };
 
   return (

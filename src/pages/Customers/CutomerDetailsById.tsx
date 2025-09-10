@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import SidebarLayout from "../../components/SideBarLayout";
 import {
   pageHeadingStyle,
-  SIDEBAR_CUSTOMER_LIST,
-  SIDEBAR_CUSTOMERS,
 } from "../../utils/commonUtils";
 import APICall from "../../utils/callApiUtils";
 import { toast } from "react-toastify";

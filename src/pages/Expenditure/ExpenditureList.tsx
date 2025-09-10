@@ -53,7 +53,7 @@ const ExpenditureList = () => {
       headerName: "Created On",
       flex: 1,
       sortable: true,
-      valueGetter: (value, row) => (
+      valueGetter: (_, row) => (
         new Date(row.created_at)
       ),
       renderCell: (params) => (
