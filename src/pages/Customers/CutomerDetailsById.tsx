@@ -49,8 +49,8 @@ const CutomerDetailsById = () => {
         setAccessToken
       });
       setLoading(false);
-      if (response) {
-        setApiResponse(response);
+      if (response.data) {
+        setApiResponse(response.data);
       }
     }
     getApiResponse();
@@ -59,10 +59,6 @@ const CutomerDetailsById = () => {
   return (
     <>
       {loading && <LoaderModal />}
-      <SidebarLayout
-        mainOptionSelected={SIDEBAR_CUSTOMERS}
-        optionSelected={SIDEBAR_CUSTOMER_LIST}
-      />
       <div className="main-page-wrapper-global">
         <h1 style={pageHeadingStyle}>Customer Details</h1>
         <div className="customer-container">

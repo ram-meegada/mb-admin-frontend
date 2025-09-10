@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import SidebarLayout from "../../components/SideBarLayout";
 import LoaderModal from "../../components/Loader";
 import {
   pageHeadingStyle,
-  SIDEBAR_ANALYTICS,
-  SIDEBAR_MARGIN_ANALYTICS,
 } from "../../utils/commonUtils";
 import { toast } from "react-toastify";
 import APICall from "../../utils/callApiUtils";
@@ -60,8 +57,8 @@ const MarginAnalytics = () => {
       });
       setLoading(false);
 
-      if (response) {
-        setApiResponse(response);
+      if (response.data) {
+        setApiResponse(response.data);
       }
     }
     getApiResponse();
@@ -75,10 +72,6 @@ const MarginAnalytics = () => {
   return (
     <>
       {loading && <LoaderModal />}
-      <SidebarLayout
-        mainOptionSelected={SIDEBAR_ANALYTICS}
-        optionSelected={SIDEBAR_MARGIN_ANALYTICS}
-      />
       <div className="main-page-wrapper-global">
         <h1 style={pageHeadingStyle}>Margin Analytics</h1>
         <DropDownComponent option="Monthly" />
@@ -94,9 +87,10 @@ const MarginAnalytics = () => {
               margin: "30px",
               marginTop: 0,
               fontSize: "1.5rem",
-              backgroundColor: "var(--hover-red-color)",
+              backgroundColor: "rgb(243, 88, 101)",
               width: 'fit-content',
-              padding: '1rem'
+              padding: '1rem',
+              color: "white"
             }}
             >
             <p>

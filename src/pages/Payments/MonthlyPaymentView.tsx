@@ -76,8 +76,8 @@ const MonthlyPaymentView = () => {
         setAccessToken
       });
       setLoading(false);
-      if (response) {
-        setApiData(response);
+      if (response.status === 200) {
+        setApiData(response.data);
       }
     }
     getApiResponse();
@@ -86,10 +86,6 @@ const MonthlyPaymentView = () => {
   return (
     <>
       {loading && <LoaderModal />}
-      <SidebarLayout
-        mainOptionSelected={SIDEBAR_PAYMENTS}
-        optionSelected={SIDEBAR_MONTH_PAYMENTS}
-      />
       <div className="main-page-wrapper-global">
         <h1 style={pageHeadingStyle}>
           {apiData?.name}'s {apiData?.month} Payment

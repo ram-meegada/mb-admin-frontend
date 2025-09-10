@@ -3,6 +3,24 @@ html, body, #root {
   margin: 0px;
   padding: 1px;
   height: 100%;
-  background-color: #1a1a1a;
-  /* background-color: white; */
+  /* background-color: black; */
+  background-color: var(--primary-background-color);
+}
+
+/* .MuiDataGrid-root { */
+  /* --DataGrid-headerBackground: red !important; */
+  /* --DataGrid-containerBackground: grey !important; */
+  /* --DataGrid-cell-color: red !important; */
+  /* --DataGrid-header-color: red !important; */
+  /* color: #fff !important; */
+/* } */
+
+.MuiDataGrid-root .MuiDataGrid-columnHeaders {
+  --DataGrid-t-header-background-base: var(--dark-grey) !important;
+  /* background-color: var(--dark-grey) !important; */
+  color: #fff !important;
+}
+
+.MuiToolbar-root {
+  background-color: var(--dark-grey) !important;
 }

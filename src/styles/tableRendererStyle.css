@@ -23,7 +23,7 @@ td {
     font-size: 1.2rem;
     text-align: center;
     vertical-align: middle;
-    background-color: var(--hover-red-color);
+    background-color: var(--dark-grey-border);
     max-width: 200px;
 }
 

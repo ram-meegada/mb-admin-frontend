@@ -2,10 +2,7 @@ import { useEffect, useState } from "react";
 import ToastComponent from "../../components/ToastComponent";
 import {
   pageHeadingStyle,
-  SIDEBAR_ANALYTICS,
-  SIDEBAR_EXPENDITURE_ANALYTICS,
 } from "../../utils/commonUtils";
-import SidebarLayout from "../../components/SideBarLayout";
 import LoaderModal from "../../components/Loader";
 import { useNavigate } from "react-router-dom";
 import BarChartComponent from "../../components/BarChartComponent";
@@ -54,17 +51,17 @@ const ExpenditureAnalytics = () => {
       setAccessToken: setAccessToken
     });
     setLoading(false);
-    if (response) {
+    if (response.data) {
       if (payload.analytics_type === "monthly_data") {
-        setMonthlyChartData(response);
+        setMonthlyChartData(response.data);
         setMainCategoryChartData(undefined);
         setSubCategoryChartData(undefined);
       } else if (payload.analytics_type === "main_categories_analysis") {
-        setMainCategoryChartData(response);
+        setMainCategoryChartData(response.data);
         setSubCategoryChartData(undefined);
       }
       else if (payload.analytics_type === "sub_categories_analysis") {
-        setSubCategoryChartData(response)
+        setSubCategoryChartData(response.data)
       }
     }
   }
@@ -80,10 +77,6 @@ const ExpenditureAnalytics = () => {
   return (
     <>
       {loading && <LoaderModal />}
-      <SidebarLayout
-        mainOptionSelected={SIDEBAR_ANALYTICS}
-        optionSelected={SIDEBAR_EXPENDITURE_ANALYTICS}
-      />
       <div className="main-page-wrapper-global">
         <h1 style={pageHeadingStyle}>Expenditure Analytics</h1>
         <DropDownComponent option="Monthly" />

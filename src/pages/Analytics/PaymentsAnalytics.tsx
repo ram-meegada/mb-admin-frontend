@@ -1,10 +1,7 @@
 import { useEffect, useState } from "react";
-import SidebarLayout from "../../components/SideBarLayout";
 import LoaderModal from "../../components/Loader";
 import {
   pageHeadingStyle,
-  SIDEBAR_ANALYTICS,
-  SIDEBAR_PAYMENTS_ANALYTICS,
 } from "../../utils/commonUtils";
 import { toast } from "react-toastify";
 import APICall from "../../utils/callApiUtils";
@@ -53,8 +50,8 @@ const PaymentsAnalytics = () => {
       });
       setLoading(false);
 			
-      if (response) {
-        setApiResponse(response);
+      if (response.data) {
+        setApiResponse(response.data);
       }
     }
     getApiResponse();
@@ -67,10 +64,6 @@ const PaymentsAnalytics = () => {
   return (
     <>
       {loading && <LoaderModal />}
-      <SidebarLayout
-        mainOptionSelected={SIDEBAR_ANALYTICS}
-        optionSelected={SIDEBAR_PAYMENTS_ANALYTICS}
-      />
       <div className="main-page-wrapper-global">
         <h1 style={pageHeadingStyle}>Payments Analytics</h1>
 				<DropDownComponent option="Monthly" />

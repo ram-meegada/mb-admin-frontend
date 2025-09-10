@@ -1,4 +1,4 @@
-export const BASE_URL = import.meta.env.VITE_BASE_URL
+export const BASE_URL = import.meta.env.VITE_LOCAL_BASE_URL
 
 // export const BASE_URL = "https://mb-business-backend.onrender.com/"
 
@@ -42,7 +42,7 @@ export const MARGIN_ANALYTICS = BASE_URL + CUSTOMERS_ENDPOINTS + 'margin-analyti
 
 // Orders
 export const ORDERS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'orders/'
-
+export const ADD_ORDER = BASE_URL + CUSTOMERS_ENDPOINTS + 'orders/add/'
 
 
 // ######################################### Front End Endpoints ########################################## //
@@ -50,12 +50,20 @@ export const ORDERS_LIST = BASE_URL + CUSTOMERS_ENDPOINTS + 'orders/'
 export const LOGIN_ENDPOINT_FE = '/'
 export const HOME_ENDPOINT_FE = '/home'
 export const STOCKS_LIST_ENDPOINT_FE = '/stocks-list'
+export const STOCK_ADD_ENDPOINT_FE = '/stocks-add'
 export const MONTH_PAYMENTS_ENDPOINT_FE = '/monthly-payments'
 export const ALL_CUSTOMERS_ENDPOINT_FE = '/all-customers'
 export const CUSTOMER_BY_ID_ENDPOINT_FE = '/customer/:id'
 export const EXPENDITURE_LIST_ENDPOINT_FE = '/expenditure/all'
+export const EXPENDITURE_ADD_ENDPOINT_FE = '/expenditure/add'
 export const EXPENDITURE_ANALYTICS_ENDPOINT_FE = '/expenditure/analytics'
 export const PAYMENTS_ANALYTICS_ENDPOINT_FE = '/payments/analytics'
 export const MARGIN_ANALYTICS_ENDPOINT_FE = '/margin/analytics'
 export const VIEW_MONTH_PAYMENT_ENDPOINT_FE = '/payment/:id'
 export const ORDERS_LISTING_ENDPOINT_FE = '/orders'
+export const ADD_ORDERS_ENDPOINT_FE = '/orders/add/:id'
+export const ADD_CUSTOMER_ENDPOINT_FE = '/customer/add'
+
+
+// 
+export const SIDEBAR_ENDPOINT_FE = '/sidebar-test'

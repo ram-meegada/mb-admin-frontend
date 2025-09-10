@@ -1,7 +1,15 @@
 :root {
-  /* --primary-background-color: #ff3333; */
-  --primary-background-color: #f34242;
+  --primary-background-color: hsl(220, 35%, 3%);
+  /* --primary-background-color: #f34242; */
   --page-background-color: #232323;
-  --hover-red-color: #f1948a;
-  --main-card-margin-left: 17% 
+  /* --dark-grey-border: #f1948a; */
+  /* --dark-grey-border: #e80ff7; */
+  /* --dark-grey-border: hsla(220, 20%, 25%, 0.6); */
+  --main-card-margin-left: 15%;
+  --dark-grey: hsl(220, 30%, 7%);
+  --dark-grey-border: hsla(220, 20%, 25%, 0.6);
+  --text-primary-color: #DBD5D3;
+  --hover-color: hsl(220, 20%, 10%);
+  --background-image: linear-gradient(var(--dark-grey), var(--dark-grey-border));
+  --blue-color: rgb(73, 90, 251)
 }
