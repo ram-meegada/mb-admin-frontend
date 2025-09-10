@@ -15,7 +15,7 @@ const PieChartComponent = ({ chartData }: Props) => {
       style={{
         margin: "2rem",
         // height: 500,
-        backgroundColor: "var(--hover-red-color)",
+        backgroundColor: "hsl(211, 30%, 11%)",
         padding: "1rem",
         alignSelf: "center",
       }}
@@ -32,7 +32,7 @@ const PieChartComponent = ({ chartData }: Props) => {
             <text
               x={x}
               y={y}
-              fill="black"
+              fill="white"
               textAnchor="middle"
               dominantBaseline="central"
             >
@@ -48,12 +48,12 @@ const PieChartComponent = ({ chartData }: Props) => {
           contentStyle={{
             backgroundColor: "#fff",
             borderColor: "#ccc",
-            color: "black",
+            color: "white",
           }}
-          itemStyle={{ color: "black" }}
+          itemStyle={{ color: "red" }}
         />
         <Legend
-          formatter={(value) => <span style={{ color: "black" }}>{`${value}`}</span>}
+          formatter={(value) => <span style={{ color: "white" }}>{`${value}`}</span>}
         />
       </PieChart>
     </div>

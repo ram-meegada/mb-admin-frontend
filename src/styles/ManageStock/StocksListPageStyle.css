@@ -22,7 +22,7 @@
 .st_lst_animal_card:hover {
     border-style: solid;
     border-width: 2px;
-    border-color: var(--hover-red-color);
+    border-color: var(--dark-grey-border);
 }
 
 .st_lst_animal_card_img {

@@ -14,7 +14,7 @@ const CheckBoxComp = ({label, optionSelected}: Props) => {
           sx={{
             color: "white",
             "&.Mui-checked": {
-              color: "var(--hover-red-color)",
+              color: "var(--dark-grey-border)",
             },
             paddingLeft: 0,
           }}

@@ -40,10 +40,10 @@ export default function DatePickerComponent({onDateSelect, defaultDate, label}: 
             textField: {
               fullWidth: true,
               sx: {
-                backgroundColor: "grey",
-                // border: 'solid',
+                // backgroundColor: "var(--dark-grey-border)",
+                border: '1px solid var(--dark-grey-border)',
                 // borderWidth: 1,
-                // borderColor: 'var(--hover-red-color)',
+                // borderColor: 'var(--dark-grey-border)',
                 // color: 'red'
               },
             },

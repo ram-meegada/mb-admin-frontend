@@ -77,19 +77,20 @@ const BarChartComponent = ({ chartData, handleBarClicked, title, symbol='₹', d
     <div
       style={{
         margin: "2rem",
-        backgroundColor: "var(--hover-red-color)",
+        backgroundColor: "var(--dark-grey)",
         padding: "1rem",
+        border: '1px solid var(--dark-grey-border)'
       }}
     >
-      <h2 style={{ margin: 0, marginBottom: '1rem', textAlign: 'center' }}>{title} ({symbol})</h2>
+      <h2 style={{ margin: 0, marginBottom: '1rem', textAlign: 'center', color: 'white' }}>{title} ({symbol})</h2>
       <div style={{ display: 'flex' }}>
         <ResponsiveContainer height={500}>
           <BarChart data={chartData?.bar_chart_data}>
-            <CartesianGrid strokeDasharray="3 3" stroke="grey" />
-            <XAxis dataKey="x" stroke="black" />
-            <YAxis stroke="black" domain={yAxisDomain}/>
+            <CartesianGrid strokeDasharray="3 3" stroke="none" />
+            <XAxis dataKey="x" stroke="white" tick={{ fill: "white" }} />
+            <YAxis stroke="white" domain={yAxisDomain} tick={{ fill: "white" }} />
             <Tooltip formatter={(val) => formatLabel(val)} />
-            <ReferenceLine y={0} stroke="black" strokeWidth={2} />
+            <ReferenceLine y={0} stroke="white" strokeWidth={2} />
             <Bar
               dataKey="y"
               onClick={BarClicked}
@@ -97,7 +98,7 @@ const BarChartComponent = ({ chartData, handleBarClicked, title, symbol='₹', d
               {chartData?.bar_chart_data.map((_, index) => (
                 <Cell
                 key={`bar-${index}`}
-                fill={index === clickedIndex ? "#286cf3" : "#739ff5"}
+                fill={index === clickedIndex ? "rgb(243, 88, 101)" : "rgb(73, 90, 251)"}
                 />
               ))}
             </Bar>

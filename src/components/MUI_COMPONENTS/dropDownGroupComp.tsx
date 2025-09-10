@@ -16,19 +16,20 @@ type optionProps = {
 type Props = {
   data: optionProps[];
   error?: string;
-  optionSelected: (id: number) => void
+  optionSelected: (id: number) => void;
+  label?: string
 }
 
-const DropDownGroupComp = ({data, error, optionSelected}: Props) => {
+const DropDownGroupComp = ({data, error, optionSelected, label="Category"}: Props) => {
 
   return (
     <div>
       <FormControl required>
-        <InputLabel htmlFor="grouped-select">Category</InputLabel>
+        <InputLabel htmlFor="grouped-select">{label}</InputLabel>
         <Select
           defaultValue=""
           id="grouped-select"
-          label="Category"
+          label={label}
           sx={{
             width: 300,
           }}

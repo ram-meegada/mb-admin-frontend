@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import LoaderModal from "../../components/Loader";
-import SidebarLayout from "../../components/SideBarLayout";
 import {
   pageHeadingStyle,
-  SIDEBAR_EXPENDITURE,
-  SIDEBAR_EXPENDITURE_ADD,
 } from "../../utils/commonUtils";
 import ToastComponent from "../../components/ToastComponent";
 import DropDownGroupComp from "../../components/MUI_COMPONENTS/dropDownGroupComp";
@@ -51,8 +48,8 @@ const AddExpenditure = () => {
         setAccessToken
       })
       setLoading(false)
-      if (response) {
-        setExpCategories(response)
+      if (response.data) {
+        setExpCategories(response.data)
       }
     }
     getApiResponse()
@@ -78,8 +75,9 @@ const AddExpenditure = () => {
         formData: payload,
         setAccessToken
       })
-
-      navigate(EXPENDITURE_LIST_ENDPOINT_FE)
+      if (response.status === 201) {
+        navigate(EXPENDITURE_LIST_ENDPOINT_FE)
+      }
     }
     catch (err) {
       setLoading(false)
@@ -91,10 +89,6 @@ const AddExpenditure = () => {
   return (
     <>
       {loading && <LoaderModal />}
-      <SidebarLayout
-        mainOptionSelected={SIDEBAR_EXPENDITURE}
-        optionSelected={SIDEBAR_EXPENDITURE_ADD}
-      />
       <div className="main-page-wrapper-global">
         <h1 style={pageHeadingStyle}>Add Expenditure</h1>
         <Stack component="form" spacing={2} sx={{ alignSelf: "center", mt: 5 }} onSubmit={handleFormSubmit}>
@@ -107,6 +101,9 @@ const AddExpenditure = () => {
             required
             onChange={(e) => setPayload({...payload, amount: parseInt(e.target.value)})}
             sx={{ width: 300 }}
+            onWheel={(event) => {
+                        (event.target as HTMLInputElement).blur();
+                      }}
             slotProps={{
               input: {
                 startAdornment: (

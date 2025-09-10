@@ -1,32 +1,81 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import APICall from "../../utils/callApiUtils";
 import { CUSTOMER_BY_ID_ENDPOINT_FE, ORDERS_LIST } from "../../utils/endpoints";
 import LoaderModal from "../../components/Loader";
-import SidebarLayout from "../../components/SideBarLayout";
 import {
   pageHeadingStyle,
-  SIDEBAR_ORDERS,
-  SIDEBAR_ORDERS_LIST,
 } from "../../utils/commonUtils";
-import TableRendererComponent from "../../components/TableRendererComponent";
 import ToastComponent from "../../components/ToastComponent";
+import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import { Box, ThemeProvider } from "@mui/material";
+import { dataGridTheme } from "../../styles/muiStyles";
 
+
+type apiProps = {
+  customer: {id: number, name: string};
+  subscription: string;
+  price_at_order: number;
+  is_morning_delivery: boolean;
+  status: string
+}
 
 const OrdersListPage = () => {
   const { accessToken, setAccessToken } = useAuth();
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-  const [apiResponse, setApiResponse] = useState([]);
+  const [apiResponse, setApiResponse] = useState<apiProps[]>([]);
 
-  const tableHeaders = [
-    { name: "Customer", type: "actionLink", redirectTo: CUSTOMER_BY_ID_ENDPOINT_FE },
-    { name: "Subscription", type: "string" },
-    { name: "Price", type: "price" },
-    { name: "Morning Delivery", type: "boolean" },
-    { name: "status", type: "string" },
+  const tableHeaders: GridColDef[] = [
+    {
+      field: "customer",
+      headerName: "Customer",
+      flex: 1,
+      sortable: false,
+      renderCell: (params) => (
+        <Link
+          style={{ color: "white" }}
+          to={`${CUSTOMER_BY_ID_ENDPOINT_FE.replace(
+            ":id",
+            String(params.row.customer.id)
+          )}`}
+        >
+          {params.row.customer.name}
+        </Link>
+      ),
+    },
+    {
+      field: "subscription",
+      headerName: "Subscription",
+      flex: 2,
+      sortable: true,
+    },
+    {
+      field: "price_at_order",
+      headerName: "Price",
+      flex: 1,
+      sortable: true,
+      type: "number",
+      valueGetter: (value, row) => (row.price_at_order),
+      renderCell: (param) => (
+        `${param.row.price_at_order} /-`
+      )
+    },
+    {
+      field: "is_morning_delivery",
+      headerName: "Morning Delivery",
+      flex: 1,
+      sortable: false,
+      type: "boolean",
+    },
+    {
+      field: "status",
+      headerName: "Status",
+      flex: 1,
+      sortable: false,
+    },
   ];
 
   function onFailureCallBack(message: string) {
@@ -47,8 +96,8 @@ const OrdersListPage = () => {
         setAccessToken: setAccessToken,
       });
       setLoading(false);
-      if (response) {
-        setApiResponse(response);
+      if (response.status === 200) {
+        setApiResponse(response.data);
       }
     }
     getApiResponse();
@@ -57,16 +106,21 @@ const OrdersListPage = () => {
   return (
     <>
       {loading && <LoaderModal />}
-      <SidebarLayout
-        mainOptionSelected={SIDEBAR_ORDERS}
-        optionSelected={SIDEBAR_ORDERS_LIST}
-      />
       <div className="main-page-wrapper-global">
-        <h1 style={pageHeadingStyle}>Orders List</h1>
-        <TableRendererComponent
-          tableHeaders={tableHeaders}
-          apiData={apiResponse}
-        />
+        <h1 style={pageHeadingStyle}>Orders</h1>
+        <Box sx={{ maxHeight: 900, display: "flex", flexDirection: "column" }}>
+          <ThemeProvider theme={dataGridTheme}>
+            <DataGrid
+              rows={apiResponse}
+              columns={tableHeaders}
+              pageSizeOptions={[10, 20, 30, 40, 50]}
+              initialState={{
+                pagination: { paginationModel: { pageSize: 10 } },
+              }}
+              disableRowSelectionOnClick
+            />
+          </ThemeProvider>
+        </Box>
       </div>
       <ToastComponent />
     </>

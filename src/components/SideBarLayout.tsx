@@ -20,7 +20,8 @@ import {
   SIDEBAR_ORDERS,
   SIDEBAR_ORDERS_LIST,
   SIDEBAR_EXPENDITURE_ADD,
-  SIDEBAR_ORDERS_ADD
+  SIDEBAR_ORDERS_ADD,
+  SIDEBAR_CUSTOMER_ADD
 } from "../utils/commonUtils";
 import { useNavigate } from "react-router-dom";
 
@@ -39,7 +40,7 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
     return {
       backgroundColor:
         dropDownSelected == text
-          ? "var(--hover-red-color)"
+          ? "var(--dark-grey-border)"
           : "var(--primary-background-color)",
     };
   }
@@ -55,7 +56,7 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
         subMenuSelected == text
           ? "var(--page-background-color)"
           // ? "#83a4f2"
-          : "var(--hover-red-color)",
+          : "var(--dark-grey-border)",
     };
   }
 
@@ -130,6 +131,13 @@ const SidebarLayout = ({ mainOptionSelected, optionSelected }: Props) => {
         </button>
         {dropDownSelected == SIDEBAR_CUSTOMERS && (
           <ul className="sidebar-dropdown-submenu">
+            <li
+              className="sidebar-dropdown-item"
+              onClick={() => handleSubMenuSelect(SIDEBAR_CUSTOMER_ADD)}
+              style={getSubMenuSelectedStyle(SIDEBAR_CUSTOMER_ADD)}
+            >
+              Add Customer
+            </li>
             <li
               className="sidebar-dropdown-item"
               onClick={() => handleSubMenuSelect(SIDEBAR_CUSTOMER_LIST)}

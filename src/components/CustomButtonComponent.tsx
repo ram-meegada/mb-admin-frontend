@@ -15,7 +15,7 @@ const CustomButtonComponent = ({ buttonStyles, onClick }: buttonStylesProps) => 
     sx={{
         // maxWidth: "200px",
         width: "10%",
-        backgroundColor: "var(--hover-red-color)",
+        backgroundColor: "var(--dark-grey-border)",
         py: 1.5,
         fontWeight: 'bold',
         "&:hover": {

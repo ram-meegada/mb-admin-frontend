@@ -45,7 +45,7 @@ const APICall = async ({
       options.headers["Content-Type"] = contentType;
     }
     
-    const response = await fetch(endPoint, options);
+    const response = await fetch(endPoint, options);    
     json_response = await response.json();
 
     if (response.status === 401) {
@@ -71,21 +71,28 @@ const APICall = async ({
       }
       else {
         onFailure("Something went wrong")
+        return {status: 500}
       }
     } else if (response.status === 400) {
       onFailure(json_response?.message || "Something went wrong")
+      return {status: 400}
     } else if ([200, 201].includes(response.status)) {
-      return json_response.data
+      const res = {...json_response, status: response.status}
+      return res
     } else if (response.status === 500) {
       onFailure(json_response?.message || "Internal server error")
+      return {status: 500}
     } else if (response.status === 405) {
       onFailure(json_response?.detail)
+      return {status: 405}
     } else {
       onFailure(json_response?.message || "Error not handled")
+      return {status: 500}
     }
 
   } catch (err) {
     onFailure(String(err))
+    return {status: 500}
   }
 };
 

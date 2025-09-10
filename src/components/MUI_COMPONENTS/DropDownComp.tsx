@@ -1,6 +1,5 @@
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
-import ListSubheader from "@mui/material/ListSubheader";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { FormHelperText } from "@mui/material";
@@ -9,19 +8,20 @@ import { FormHelperText } from "@mui/material";
 type Props = {
   data: string[][];
   error?: string;
-  optionSelected: (option: string) => void
+  optionSelected: (option: string) => void;
+  label?: string
 }
 
-const DropDownComp = ({data, error, optionSelected}: Props) => {
+const DropDownComp = ({data, error, optionSelected, label='Category'}: Props) => {
 
   return (
     <div>
       <FormControl required>
-        <InputLabel htmlFor="grouped-select">Category</InputLabel>
+        <InputLabel htmlFor="grouped-select">{label}</InputLabel>
         <Select
           defaultValue=""
           id="grouped-select"
-          label="Category"
+          label={label}
           sx={{
             width: 300,
           }}

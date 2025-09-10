@@ -5,17 +5,61 @@ import App from "./App.tsx";
 import { AuthProvider } from "./contexts/AuthContext.tsx";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import type {} from "@mui/x-date-pickers/themeAugmentation";
+import type {} from '@mui/x-data-grid/themeAugmentation';
 
 
 const theme = createTheme({
   components: {
+    MuiPickersSectionList: {
+      styleOverrides: {
+        root: {
+          color: 'white'
+        }
+      }
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          "&:hover": {
+            backgroundColor: "var(--hover-color)",
+            color: "var(--text-primary-color)",
+          },
+          "&.Mui-selected": {
+            backgroundColor: "var(--dark-grey-border)",
+          },
+          "&.Mui-selected:hover": {
+            backgroundColor: "var(--dark-grey-border)",
+          },
+        },
+      },
+    },
+
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          minWidth: 40,
+          color: "inherit",
+        },
+      },
+    },
+
+    MuiListItemText: {
+      styleOverrides: {
+        root: {
+          color: "var(--text-primary-color)",
+        },
+      },
+    },
+
     MuiButton: {
       styleOverrides: {
         root: {
-          backgroundColor: "#f064fa", // default background
-          textTransform: "none", // optional: keeps normal casing
+          border: '1.5px solid var(--dark-grey-border)',
+          backgroundColor: "black",
+          backgroundImage: "var(--background-image)",
+          textTransform: "none",
           "&:hover": {
-            backgroundColor: "var(--hover-red-color)", // darker hover shade
+            backgroundColor: "var(--dark-grey-border)",
           },
         },
       },
@@ -45,13 +89,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           "& .MuiOutlinedInput-notchedOutline": {
-            borderColor: "var(--hover-red-color)",
+            borderColor: "var(--dark-grey-border)",
           },
           "&:hover .MuiOutlinedInput-notchedOutline": {
-            borderColor: "var(--hover-red-color)",
+            borderColor: "var(--dark-grey-border)",
           },
           "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
-            borderColor: "var(--hover-red-color)",
+            borderColor: "var(--blue-color)",
           },
         },
         input: {
@@ -64,7 +108,7 @@ const theme = createTheme({
         root: {
           color: "white",
           "&.Mui-focused": {
-            color: "var(--hover-red-color)",
+            color: "white",
           },
         },
       },
@@ -73,6 +117,14 @@ const theme = createTheme({
       styleOverrides: {
         icon: {
           color: "white",
+        },
+      },
+    },
+
+    MuiSvgIcon: {
+      styleOverrides: {
+        root: {
+          fill: "rgb(148, 160, 184)",
         },
       },
     },
