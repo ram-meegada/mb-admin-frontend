@@ -7,6 +7,7 @@ import {
   ADD_CUSTOMER_ENDPOINT_FE,
   ADD_ORDERS_ENDPOINT_FE,
   ALL_CUSTOMERS_ENDPOINT_FE,
+  CHAT_WITH_BUJJI_ENDPOINT_FE,
   CUSTOMER_BY_ID_ENDPOINT_FE,
   EXPENDITURE_ADD_ENDPOINT_FE,
   EXPENDITURE_ANALYTICS_ENDPOINT_FE,
@@ -37,6 +38,7 @@ import AddCustomerPage from "./pages/Customers/AddCustomerPage";
 import AddStockPage from "./pages/ManageStock/AddStockPage";
 import SidebarMuiComp from "./components/MUI_COMPONENTS/sideBarComp";
 import MainLayout from "./components/MainComponent";
+import ChatWithBujji from "./pages/BujjiAI/ChatWithBujji";
 
 
 function App() {
@@ -47,6 +49,7 @@ function App() {
           <Route path={LOGIN_ENDPOINT_FE} element={<LoginPage />} />
           <Route element={<MainLayout />}>
             <Route path={HOME_ENDPOINT_FE} element={<HomePage />} />
+            <Route path={CHAT_WITH_BUJJI_ENDPOINT_FE} element={<ChatWithBujji />} />
             <Route path={STOCKS_LIST_ENDPOINT_FE} element={<StocksListPage />} />
             <Route
               path={MONTH_PAYMENTS_ENDPOINT_FE}

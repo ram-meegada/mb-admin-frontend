@@ -12,6 +12,7 @@ import ToastComponent from "../../components/ToastComponent";
 import { DataGrid, type GridColDef } from "@mui/x-data-grid";
 import { Box, ThemeProvider } from "@mui/material";
 import { dataGridTheme } from "../../styles/muiStyles";
+import DatePickerComponent from "../../components/DatePickerComponent";
 
 
 type apiProps = {
@@ -27,6 +28,9 @@ const OrdersListPage = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [apiResponse, setApiResponse] = useState<apiProps[]>([]);
+  const todayDate = new Date()
+  const todayDateISO = todayDate.toISOString().split('T')[0]
+  const [ selectedDate, setSelectedDate ] = useState<string | null>(todayDateISO)
 
   const tableHeaders: GridColDef[] = [
     {
@@ -82,32 +86,45 @@ const OrdersListPage = () => {
     toast.error(message);
   }
 
-  useEffect(() => {
-    async function getApiResponse() {
-      setLoading(true);
-      const response = await APICall({
-        method: "POST",
-        Accept: "application/json",
-        endPoint: ORDERS_LIST,
-        onFailure: onFailureCallBack,
-        contentType: "application/json",
-        navigate: navigate,
-        accessToken: accessToken,
-        setAccessToken: setAccessToken,
-      });
-      setLoading(false);
-      if (response.status === 200) {
-        setApiResponse(response.data);
-      }
+  async function getApiResponse() {
+    if (!selectedDate) {
+      return
     }
+    const payload = {date: selectedDate}
+    setLoading(true);
+    const response = await APICall({
+      method: "POST",
+      Accept: "application/json",
+      endPoint: ORDERS_LIST,
+      onFailure: onFailureCallBack,
+      contentType: "application/json",
+      navigate: navigate,
+      accessToken: accessToken,
+      setAccessToken: setAccessToken,
+      formData: payload
+    });
+    setLoading(false);
+    if (response.status === 200) {
+      setApiResponse(response.data);
+    }
+  }
+
+  useEffect(() => {
     getApiResponse();
-  }, []);
+  }, [selectedDate]);
 
   return (
     <>
       {loading && <LoaderModal />}
       <div className="main-page-wrapper-global">
         <h1 style={pageHeadingStyle}>Orders</h1>
+        <div style={{ marginLeft: 20 }}>
+          <DatePickerComponent
+            onDateSelect={(dateSelected) => setSelectedDate(dateSelected)}
+            defaultDate={selectedDate}
+            label="Select Date"
+          />
+        </div>
         <Box sx={{ maxHeight: 900, display: "flex", flexDirection: "column" }}>
           <ThemeProvider theme={dataGridTheme}>
             <DataGrid

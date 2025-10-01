@@ -22,13 +22,16 @@ import AddIcon from "@mui/icons-material/Add";
 import ListIcon from "@mui/icons-material/List";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import AnalyticsIcon from "@mui/icons-material/Analytics";
+import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import PaymentsIcon from "@mui/icons-material/Payments";
 import TrendingUpIcon from "@mui/icons-material/TrendingUp";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import AndroidIcon from '@mui/icons-material/Android';
 import { Link, useLocation } from "react-router-dom";
 import {
   ADD_CUSTOMER_ENDPOINT_FE,
   ALL_CUSTOMERS_ENDPOINT_FE,
+  CHAT_WITH_BUJJI_ENDPOINT_FE,
   EXPENDITURE_ADD_ENDPOINT_FE,
   EXPENDITURE_ANALYTICS_ENDPOINT_FE,
   EXPENDITURE_LIST_ENDPOINT_FE,
@@ -289,21 +292,8 @@ export default function SidebarMuiComp() {
             <ListItemText primary="Orders" />
             {openSub == 7 ? <ExpandLess /> : <ExpandMore />}
           </ListItemButton>
-
           <Collapse in={openSub == 7} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              {/* <ListItemButton
-                component={Link}
-                to={ADD_ORDERS_ENDPOINT_FE}
-                sx={{ pl: 4 }}
-                selected={location.pathname === ADD_ORDERS_ENDPOINT_FE}
-              >
-                <ListItemIcon>
-                  <AddIcon />
-                </ListItemIcon>
-                <ListItemText primary="Add Order" />
-              </ListItemButton> */}
-
               <ListItemButton
                 component={Link}
                 to={ORDERS_LISTING_ENDPOINT_FE}
@@ -314,6 +304,30 @@ export default function SidebarMuiComp() {
                   <ListIcon />
                 </ListItemIcon>
                 <ListItemText primary="All Orders" />
+              </ListItemButton>
+            </List>
+          </Collapse>
+
+          {/* Orders */}
+          <ListItemButton onClick={() => handleClick(8)}>
+            <ListItemIcon>
+              <AndroidIcon />
+            </ListItemIcon>
+            <ListItemText primary="BujjiAI" />
+            {openSub == 8 ? <ExpandLess /> : <ExpandMore />}
+          </ListItemButton>
+          <Collapse in={openSub == 8} timeout="auto" unmountOnExit>
+            <List component="div" disablePadding>
+              <ListItemButton
+                component={Link}
+                to={CHAT_WITH_BUJJI_ENDPOINT_FE}
+                sx={{ pl: 4 }}
+                selected={location.pathname === CHAT_WITH_BUJJI_ENDPOINT_FE}
+              >
+                <ListItemIcon>
+                  <ChatBubbleIcon />
+                </ListItemIcon>
+                <ListItemText primary="Ask Bujji" />
               </ListItemButton>
             </List>
           </Collapse>

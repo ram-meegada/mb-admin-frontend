@@ -1,4 +1,5 @@
 export const BASE_URL = 'https://mb-business-backend.onrender.com/'
+// export const BASE_URL = 'http://localhost:8001/'
 
 // VITE_LOCAL_BASE_URL = "http://localhost:8001/"
 // VITE_BASE_URL = "https://mb-business-backend.onrender.com/"
@@ -66,6 +67,7 @@ export const VIEW_MONTH_PAYMENT_ENDPOINT_FE = '/payment/:id'
 export const ORDERS_LISTING_ENDPOINT_FE = '/orders'
 export const ADD_ORDERS_ENDPOINT_FE = '/orders/add/:id'
 export const ADD_CUSTOMER_ENDPOINT_FE = '/customer/add'
+export const CHAT_WITH_BUJJI_ENDPOINT_FE = '/bujji/chat'
 
 
 // 
