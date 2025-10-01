@@ -3,7 +3,7 @@ import { pageHeadingStyle } from "../../utils/commonUtils";
 import LoaderModal from "../../components/Loader";
 
 const ChatWithBujji = () => {
-  const [loading, setLoading] = React.useState(false);
+  const [loading, _] = React.useState(false);
 
   return (
     <>
